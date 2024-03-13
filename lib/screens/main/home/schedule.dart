@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:applebycollegeapp/requests/schedule_cache.dart';
+import 'package:applebycollegeapp/requests/schedule-assignment/schedule_cache.dart';
 import 'package:flutter/material.dart';
 import 'package:applebycollegeapp/classes/scheduleClass.dart';
-import 'package:applebycollegeapp/requests/schedule_handler.dart';
+import 'package:applebycollegeapp/requests/schedule-assignment/schedule_handler.dart';
 
 class Schedule extends StatefulWidget {
   const Schedule({

@@ -1,5 +1,4 @@
-import 'dart:convert';
-import 'package:applebycollegeapp/requests/schedule_cache.dart';
+import 'package:applebycollegeapp/requests/schedule-assignment/schedule_cache.dart';
 import 'package:icalendar_parser/icalendar_parser.dart';
 import 'package:applebycollegeapp/classes/scheduleClass.dart';
 import 'package:flutter/material.dart';

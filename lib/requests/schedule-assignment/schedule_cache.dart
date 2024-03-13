@@ -1,8 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
-import 'dart:convert';
-
 class MySharedPreferences {
   static const String _keyData = 'myData';
   static const String _keyExpiration = 'expirationTime';

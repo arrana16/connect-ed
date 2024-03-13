@@ -1,8 +1,9 @@
 import 'package:applebycollegeapp/classes/scheduleClass.dart';
 import 'package:applebycollegeapp/screens/main/home/schedule.dart';
 import 'package:flutter/material.dart';
-import 'package:applebycollegeapp/requests/schedule_handler.dart';
-import 'package:applebycollegeapp/requests/schedule_cache.dart';
+import 'package:applebycollegeapp/requests/schedule-assignment/schedule_handler.dart';
+import 'package:applebycollegeapp/requests/schedule-assignment/schedule_cache.dart';
+import 'package:applebycollegeapp/requests/schedule-assignment/assignment_handler.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
@@ -36,6 +37,10 @@ class _HomeScreenState extends State<HomeScreen> {
     var bgColor = isDarkMode ? Color.fromARGB(255, 11, 11, 11) : Colors.white;
     var textColor = isDarkMode ? Colors.white : Colors.black;
 
+    AssignmentGetter assignmentGetter = AssignmentGetter(
+        remoteSource: RemoteSource(MySharedPreferences()),
+        mySharedPreferences: MySharedPreferences());
+
     return MaterialApp(
         theme: ThemeData(fontFamily: 'Raleway'),
         home: Scaffold(
@@ -56,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
                               colors: [Colors.black, Colors.black])),
-                      child: const CircularProgressIndicator());
+                      child: const LinearProgressIndicator(value: null));
                 } else if (snapshot.hasError) {
                   return Container(
                       height: 0.25 * screenHeight + safePadding,
@@ -154,7 +159,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                     size: 24,
                                     color: Colors.white,
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    assignmentGetter.getData();
+                                  },
                                   padding: EdgeInsets.zero,
                                   constraints: const BoxConstraints()),
                               const Spacer(),
