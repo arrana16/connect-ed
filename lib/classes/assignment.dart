@@ -1,6 +1,6 @@
 class Assignment {
   String className;
-  String date;
+  DateTime date;
   String title;
   String description;
 
