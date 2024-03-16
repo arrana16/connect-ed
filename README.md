@@ -11,3 +11,4 @@ This is a student portal application for Appleby College written using the Flutt
 
 <img width="407" alt="image" src="https://github.com/arrana16/applebycollegeapp/assets/69128309/8f2d6830-0a10-4e1f-96d0-e868c3b6941d">
 <img width="407" alt="image" src="https://github.com/arrana16/applebycollegeapp/assets/69128309/ed424511-6fb1-467f-b14b-e536f0689c5f">
+<i>Some of these features may be modified in the final product</i>
