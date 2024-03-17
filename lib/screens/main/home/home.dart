@@ -3,7 +3,7 @@ import 'package:applebycollegeapp/screens/main/home/schedule.dart';
 import 'package:flutter/material.dart';
 import 'package:applebycollegeapp/requests/schedule-assignment/schedule_handler.dart';
 import 'package:applebycollegeapp/requests/schedule-assignment/schedule_cache.dart';
-import 'package:applebycollegeapp/requests/schedule-assignment/assignment_handler.dart';
+import 'package:applebycollegeapp/requests/schedule-assignment/assessment_handler.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
@@ -61,7 +61,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
                               colors: [Colors.black, Colors.black])),
-                      child: const LinearProgressIndicator(value: null));
+                      child: Container(
+                          width: 50,
+                          height: 50,
+                          child: LinearProgressIndicator(value: null)));
                 } else if (snapshot.hasError) {
                   return Container(
                       height: 0.25 * screenHeight + safePadding,

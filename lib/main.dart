@@ -1,4 +1,5 @@
 import 'package:applebycollegeapp/providers/blocksSet_provider.dart';
+import 'package:applebycollegeapp/screens/main/assessments/AssesmentsPage.dart';
 import 'package:applebycollegeapp/screens/setup/welcome_screen.dart';
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -39,9 +40,9 @@ class _ACappState extends State<ACapp> {
   }
 
   int selectedIndex = 2;
-  List<Widget> widgetOptions = const <Widget>[
+  List<Widget> widgetOptions = <Widget>[
     Text("Calendar"),
-    Text("Assignments"),
+    AssessmentsPage(),
     HomeScreen(),
     Text("Sports"),
     Text("Settings")
@@ -52,7 +53,10 @@ class _ACappState extends State<ACapp> {
     bool isDarkMode = brightness == Brightness.dark;
 
     return Scaffold(
-      body: widgetOptions[selectedIndex],
+      body: PageStorage(
+        child: widgetOptions[selectedIndex],
+        bucket: PageStorageBucket(),
+      ),
       extendBody: true,
       bottomNavigationBar: Container(
         child: CustomNavigationBar(

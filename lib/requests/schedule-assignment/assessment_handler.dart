@@ -1,6 +1,6 @@
 import 'package:applebycollegeapp/requests/schedule-assignment/schedule_cache.dart';
 import 'package:icalendar_parser/icalendar_parser.dart';
-import 'package:applebycollegeapp/classes/assignment.dart';
+import 'package:applebycollegeapp/classes/assessment.dart';
 
 class AssignmentGetter {
   final RemoteSource remoteSource;
@@ -11,7 +11,7 @@ class AssignmentGetter {
     required this.remoteSource,
   });
 
-  Future<List<Assignment>> getData() async {
+  Future<List<Assessment>> getData() async {
     DateTime date = DateTime.now();
     try {
       final String? iCalenderData =
@@ -27,9 +27,9 @@ class AssignmentGetter {
     }
   }
 
-  List<Assignment> parseData(String data, DateTime date) {
+  List<Assessment> parseData(String data, DateTime date) {
     try {
-      List<Assignment> assignments = [];
+      List<Assessment> assignments = [];
       final iCalendar = ICalendar.fromLines(data.split("\n"));
       var events = iCalendar.toJson()["data"];
       for (int i = 0; i < events.length; i++) {
@@ -40,20 +40,23 @@ class AssignmentGetter {
         if (eventDate != null && eventDate["dt"].length == 8) {
           var descriptionList = eventSummary.split(": ");
           // var className = event["summary"].split(":")[0];
-          var assignmentName = descriptionList[descriptionList.length - 1];
+          var assignmentName =
+              descriptionList[descriptionList.length - 1] ?? '';
           var courseName = getCourseName(eventSummary.substring(
-              0, eventSummary.length - assignmentName.length));
+                  0, eventSummary.length - assignmentName.length)) ??
+              '';
           var assignmentDate = DateTime.parse(
               "${eventDate['dt'].substring(0, 4)}-${eventDate['dt'].substring(4, 6)}-${eventDate['dt'].substring(6, 8)}");
           print(
               '${eventDate['dt']}, $assignmentName,  $eventDescription, $courseName');
-          assignments.add(Assignment(
+          assignments.add(Assessment(
               className: courseName,
               date: assignmentDate,
               title: assignmentName,
-              description: eventDescription));
+              description: eventDescription ?? ''));
         }
       }
+      assignments.sort((a, b) => a.date.compareTo(b.date));
       return assignments;
     } catch (error) {
       throw Exception(error);
