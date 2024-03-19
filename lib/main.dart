@@ -1,5 +1,6 @@
 import 'package:applebycollegeapp/providers/blocksSet_provider.dart';
 import 'package:applebycollegeapp/screens/main/assessments/AssesmentsPage.dart';
+import 'package:applebycollegeapp/screens/main/sports/sportsPage.dart';
 import 'package:applebycollegeapp/screens/setup/welcome_screen.dart';
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -39,12 +40,11 @@ class _ACappState extends State<ACapp> {
     super.initState();
   }
 
-  int selectedIndex = 2;
+  int selectedIndex = 0;
   List<Widget> widgetOptions = <Widget>[
-    Text("Calendar"),
-    AssessmentsPage(),
     HomeScreen(),
-    Text("Sports"),
+    AssessmentsPage(),
+    SportsPage(),
     Text("Settings")
   ];
 
@@ -76,13 +76,10 @@ class _ACappState extends State<ACapp> {
           bubbleCurve: Curves.easeInOutSine,
           items: <CustomNavigationBarItem>[
             CustomNavigationBarItem(
-              icon: Icon(Icons.calendar_month_rounded),
+              icon: Icon(Icons.home_rounded),
             ),
             CustomNavigationBarItem(
               icon: Icon(Icons.description_rounded),
-            ),
-            CustomNavigationBarItem(
-              icon: Icon(Icons.home_rounded),
             ),
             CustomNavigationBarItem(
               icon: Icon(Icons.sports_basketball_rounded),

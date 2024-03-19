@@ -58,11 +58,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
         ? Color.fromARGB(255, 30, 30, 30)
         : Color.fromRGBO(235, 235, 235, 1);
 
-    var blockStyle = TextStyle(
-        color: textColor,
-        fontFamily: "Raleway",
-        fontSize: 15,
-        fontWeight: FontWeight.w500);
+    var blockStyle =
+        TextStyle(color: textColor, fontSize: 15, fontWeight: FontWeight.w500);
 
     return MaterialApp(
       home: Scaffold(
@@ -80,7 +77,6 @@ class _NotificationScreenState extends State<NotificationScreen> {
                         style: TextStyle(
                             fontSize: 35,
                             color: textColor,
-                            fontFamily: "Raleway",
                             fontWeight: FontWeight.w600),
                       ),
                     ),
@@ -397,9 +393,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                           child: Text(
                             "Continue",
                             style: TextStyle(
-                                color: textColor,
-                                fontFamily: "Raleway",
-                                fontWeight: FontWeight.w600),
+                                color: textColor, fontWeight: FontWeight.w600),
                           ),
                         ),
                       ),

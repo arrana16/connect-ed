@@ -47,7 +47,6 @@ class WelcomeScreen extends StatelessWidget {
                       "Hello there!",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          fontFamily: "Raleway",
                           color: textColor,
                           fontSize: 40,
                           fontWeight: FontWeight.w700),
@@ -59,7 +58,6 @@ class WelcomeScreen extends StatelessWidget {
                     style: TextStyle(
                         color: textColor,
                         fontSize: 20,
-                        fontFamily: "Raleway",
                         fontWeight: FontWeight.w500),
                   ),
                   Padding(
@@ -70,7 +68,6 @@ class WelcomeScreen extends StatelessWidget {
                       style: TextStyle(
                           color: textColor,
                           fontSize: 15,
-                          fontFamily: "Raleway",
                           fontWeight: FontWeight.w300),
                     ),
                   ),
@@ -94,9 +91,7 @@ class WelcomeScreen extends StatelessWidget {
                         child: Text(
                           "Continue",
                           style: TextStyle(
-                              color: textColor,
-                              fontFamily: "Raleway",
-                              fontWeight: FontWeight.w600),
+                              color: textColor, fontWeight: FontWeight.w600),
                         ),
                       ),
                     ),

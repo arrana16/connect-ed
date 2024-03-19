@@ -39,7 +39,7 @@ class _ScheduleState extends State<Schedule> {
     var textColor = isDarkMode ? Colors.white : Colors.black;
 
     return MaterialApp(
-        theme: ThemeData(fontFamily: "Raleway"),
+        theme: ThemeData(fontFamily: "Montserrat"),
         home: Scaffold(
           backgroundColor: bgColor,
           body: SafeArea(
@@ -62,9 +62,10 @@ class _ScheduleState extends State<Schedule> {
               Text(
                 'Schedule',
                 style: TextStyle(
+                    fontFamily: "Montserrat",
                     color: textColor,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 35),
+                    fontSize: 35,
+                    fontWeight: FontWeight.w600),
               ),
             ]),
             SizedBox(

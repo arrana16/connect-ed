@@ -66,7 +66,6 @@ class _BlueTimeScreenState extends State<BlueTimeScreen> {
                         style: TextStyle(
                             fontSize: 35,
                             color: textColor,
-                            fontFamily: "Raleway",
                             fontWeight: FontWeight.w600),
                       ),
                     ),
@@ -75,10 +74,10 @@ class _BlueTimeScreenState extends State<BlueTimeScreen> {
                       child: Text(
                         "Set your blue time and club preferences for\npersonalised information",
                         style: TextStyle(
-                            color: textColor,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w300,
-                            fontFamily: "Raleway"),
+                          color: textColor,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w300,
+                        ),
                       ),
                     ),
                     Padding(
@@ -90,7 +89,6 @@ class _BlueTimeScreenState extends State<BlueTimeScreen> {
                               "Select your grade",
                               style: TextStyle(
                                   color: textColor,
-                                  fontFamily: "Raleway",
                                   fontWeight: FontWeight.w600,
                                   fontSize: 22),
                             ),
@@ -148,7 +146,6 @@ class _BlueTimeScreenState extends State<BlueTimeScreen> {
                             "Enter your room locations",
                             style: TextStyle(
                                 color: textColor,
-                                fontFamily: "Raleway",
                                 fontWeight: FontWeight.w600,
                                 fontSize: 22),
                           ),
@@ -165,7 +162,6 @@ class _BlueTimeScreenState extends State<BlueTimeScreen> {
                                     "Guidance",
                                     style: TextStyle(
                                         color: textColor,
-                                        fontFamily: "Raleway",
                                         fontWeight: FontWeight.w500,
                                         fontSize: 18),
                                   ),
@@ -181,7 +177,6 @@ class _BlueTimeScreenState extends State<BlueTimeScreen> {
                                     },
                                     style: TextStyle(
                                         color: textColor,
-                                        fontFamily: "Raleway",
                                         fontWeight: FontWeight.w500,
                                         fontSize: 15),
                                     decoration: InputDecoration(
@@ -198,7 +193,6 @@ class _BlueTimeScreenState extends State<BlueTimeScreen> {
                                           "Room Number",
                                           style: TextStyle(
                                               color: textColor,
-                                              fontFamily: "Raleway",
                                               fontWeight: FontWeight.w500,
                                               fontSize: 15),
                                         )),
@@ -219,7 +213,6 @@ class _BlueTimeScreenState extends State<BlueTimeScreen> {
                                     "Advisory",
                                     style: TextStyle(
                                         color: textColor,
-                                        fontFamily: "Raleway",
                                         fontWeight: FontWeight.w500,
                                         fontSize: 18),
                                   ),
@@ -235,7 +228,6 @@ class _BlueTimeScreenState extends State<BlueTimeScreen> {
                                     },
                                     style: TextStyle(
                                         color: textColor,
-                                        fontFamily: "Raleway",
                                         fontWeight: FontWeight.w500,
                                         fontSize: 15),
                                     decoration: InputDecoration(
@@ -252,7 +244,6 @@ class _BlueTimeScreenState extends State<BlueTimeScreen> {
                                           "",
                                           style: TextStyle(
                                               color: textColor,
-                                              fontFamily: "Raleway",
                                               fontWeight: FontWeight.w500,
                                               fontSize: 15),
                                         )),
@@ -272,7 +263,6 @@ class _BlueTimeScreenState extends State<BlueTimeScreen> {
                             "Enter your club information",
                             style: TextStyle(
                                 color: textColor,
-                                fontFamily: "Raleway",
                                 fontWeight: FontWeight.w600,
                                 fontSize: 22),
                           ),
@@ -294,7 +284,6 @@ class _BlueTimeScreenState extends State<BlueTimeScreen> {
                                     },
                                     style: TextStyle(
                                         color: textColor,
-                                        fontFamily: "Raleway",
                                         fontWeight: FontWeight.w500,
                                         fontSize: 15),
                                     decoration: InputDecoration(
@@ -311,7 +300,6 @@ class _BlueTimeScreenState extends State<BlueTimeScreen> {
                                           "Club Name",
                                           style: TextStyle(
                                               color: textColor,
-                                              fontFamily: "Raleway",
                                               fontWeight: FontWeight.w500,
                                               fontSize: 15),
                                         )),
@@ -329,7 +317,6 @@ class _BlueTimeScreenState extends State<BlueTimeScreen> {
                                     },
                                     style: TextStyle(
                                         color: textColor,
-                                        fontFamily: "Raleway",
                                         fontWeight: FontWeight.w500,
                                         fontSize: 15),
                                     decoration: InputDecoration(
@@ -346,7 +333,6 @@ class _BlueTimeScreenState extends State<BlueTimeScreen> {
                                           "Room Number",
                                           style: TextStyle(
                                               color: textColor,
-                                              fontFamily: "Raleway",
                                               fontWeight: FontWeight.w500,
                                               fontSize: 15),
                                         )),
@@ -379,9 +365,7 @@ class _BlueTimeScreenState extends State<BlueTimeScreen> {
                           child: Text(
                             "Continue",
                             style: TextStyle(
-                                color: textColor,
-                                fontFamily: "Raleway",
-                                fontWeight: FontWeight.w600),
+                                color: textColor, fontWeight: FontWeight.w600),
                           ),
                         ),
                       ),

@@ -24,7 +24,6 @@ class FinalSetupScreen extends StatelessWidget {
                   "You're all set.",
                   style: TextStyle(
                       color: textColor,
-                      fontFamily: "Raleway",
                       fontWeight: FontWeight.w600,
                       fontSize: 40),
                 ),
@@ -44,10 +43,8 @@ class FinalSetupScreen extends StatelessWidget {
                 ),
                 child: Text(
                   "Go to App",
-                  style: TextStyle(
-                      color: textColor,
-                      fontFamily: "Raleway",
-                      fontWeight: FontWeight.w600),
+                  style:
+                      TextStyle(color: textColor, fontWeight: FontWeight.w600),
                 ),
               ),
               Spacer()

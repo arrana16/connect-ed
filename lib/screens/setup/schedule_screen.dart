@@ -55,7 +55,6 @@ class ScheduleScreen extends StatelessWidget {
                       style: TextStyle(
                           fontSize: 35,
                           color: textColor,
-                          fontFamily: "Raleway",
                           fontWeight: FontWeight.w600),
                     ),
                   ),
@@ -90,9 +89,7 @@ class ScheduleScreen extends StatelessWidget {
                       child: Text(
                         "Continue",
                         style: TextStyle(
-                            color: textColor,
-                            fontFamily: "Raleway",
-                            fontWeight: FontWeight.w600),
+                            color: textColor, fontWeight: FontWeight.w600),
                       ),
                     ),
                   ),
@@ -114,11 +111,8 @@ class BlocksDefine extends StatelessWidget {
     bool isDarkMode = brightness == Brightness.dark;
     var textColor = isDarkMode ? Colors.white : Colors.black;
 
-    var blockStyle = TextStyle(
-        color: textColor,
-        fontFamily: "Raleway",
-        fontSize: 20,
-        fontWeight: FontWeight.w500);
+    var blockStyle =
+        TextStyle(color: textColor, fontSize: 20, fontWeight: FontWeight.w500);
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
@@ -145,7 +139,6 @@ class BlocksDefine extends StatelessWidget {
                         },
                         style: TextStyle(
                             color: textColor,
-                            fontFamily: "Raleway",
                             fontWeight: FontWeight.w400,
                             fontSize: 15),
                         decoration: InputDecoration(
@@ -162,7 +155,6 @@ class BlocksDefine extends StatelessWidget {
                               index == 0 ? "Class Name" : "",
                               style: TextStyle(
                                   color: textColor,
-                                  fontFamily: "Raleway",
                                   fontWeight: FontWeight.w500),
                             )),
                       ),
@@ -176,7 +168,6 @@ class BlocksDefine extends StatelessWidget {
                         },
                         style: TextStyle(
                             color: textColor,
-                            fontFamily: "Raleway",
                             fontWeight: FontWeight.w400,
                             fontSize: 15),
                         decoration: InputDecoration(
@@ -193,7 +184,6 @@ class BlocksDefine extends StatelessWidget {
                               index == 0 ? "Room Number" : "",
                               style: TextStyle(
                                   color: textColor,
-                                  fontFamily: "Raleway",
                                   fontWeight: FontWeight.w500),
                             )),
                       ),
