@@ -21,7 +21,7 @@ class ScheduleGetter {
   ];
   // Function to get data from the cache if available, or from the API if not
   Future<List<ScheduleClass>> getData() async {
-    DateTime date = DateTime.now();
+    DateTime date = DateTime(2024, 4, 8);
     try {
       final String? iCalenderData =
           await mySharedPreferences.getDataIfNotExpired();

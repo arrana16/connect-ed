@@ -39,120 +39,141 @@ class _ScheduleState extends State<Schedule> {
     var textColor = isDarkMode ? Colors.white : Colors.black;
 
     return MaterialApp(
-        theme: ThemeData(fontFamily: "Montserrat"),
-        home: Scaffold(
-          backgroundColor: bgColor,
-          body: SafeArea(
-              child: Column(children: [
-            SizedBox(
-              height: 20,
-            ),
-            Row(children: [
-              IconButton(
-                splashRadius: 2,
-                icon: Icon(
-                  Icons.arrow_back_ios_new,
-                  color: textColor,
-                ),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                constraints: const BoxConstraints(),
-              ),
-              Text(
-                'Schedule',
-                style: TextStyle(
-                    fontFamily: "Montserrat",
-                    color: textColor,
-                    fontSize: 35,
-                    fontWeight: FontWeight.w600),
-              ),
-            ]),
-            SizedBox(
-              height: 30,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0),
-              child: FutureBuilder(
-                  future: _data,
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Text("loading");
-                    } else if (snapshot.hasError) {
-                      return Text("An error occured");
-                    } else {
-                      List<ScheduleClass> blocks =
-                          snapshot.data as List<ScheduleClass>;
-                      return Container(
-                        height: (screenHeight - safePadding) * 0.87,
-                        child: ListView.separated(
-                            itemCount: blocks.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return Padding(
-                                padding: const EdgeInsets.only(bottom: 10.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
-                                      children: [
-                                        Text(
-                                          blocks[index].startTime,
-                                          style: TextStyle(color: textColor),
-                                        ),
-                                        Text(
-                                          blocks[index].endTime,
-                                          style: TextStyle(color: textColor),
-                                        )
-                                      ],
-                                    ),
-                                    Container(
-                                      height: 70,
-                                      width: screenWidth * 0.8,
-                                      decoration: BoxDecoration(
-                                          gradient: LinearGradient(colors: [
-                                            blocks[index].firstGradient,
-                                            blocks[index].secondGradient
-                                          ]),
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(15))),
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 20.0),
-                                        child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Expanded(
-                                                child: Text(
-                                                  blocks[index].className,
-                                                  overflow: TextOverflow.fade,
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 20,
-                                                      fontWeight:
-                                                          FontWeight.w500),
-                                                ),
-                                              ),
-                                            ]),
+      theme: ThemeData(fontFamily: "Montserrat"),
+      home: Scaffold(
+        backgroundColor: bgColor,
+        body: Container(
+          color: bgColor,
+          child: SafeArea(
+            child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15),
+                child: CustomScrollView(
+                  slivers: [
+                    SliverAppBar(
+                      backgroundColor: bgColor,
+                      pinned: false,
+                      expandedHeight: 0.0,
+                      automaticallyImplyLeading: false,
+                      flexibleSpace: FlexibleSpaceBar(
+                        title: Row(
+                          children: [
+                            IconButton(
+                              splashRadius: 2,
+                              icon: Icon(
+                                Icons.arrow_back_ios_new,
+                                color: textColor,
+                              ),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              constraints: const BoxConstraints(),
+                            ),
+                            Text('Schedule',
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    color: textColor,
+                                    fontSize: 35,
+                                    fontWeight: FontWeight.w600)),
+                            Spacer()
+                          ],
+                        ),
+                      ),
+                    ),
+                    SliverPadding(
+                      padding: EdgeInsets.only(top: 15),
+                      sliver: FutureBuilder(
+                        future: _data,
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return SliverToBoxAdapter(
+                              child: Center(
+                                child: CircularProgressIndicator(),
+                              ),
+                            );
+                          } else if (snapshot.hasError) {
+                            return SliverToBoxAdapter(
+                              child: Center(
+                                child: Text('Error: ${snapshot.error}'),
+                              ),
+                            );
+                          } else {
+                            List<ScheduleClass> blocks =
+                                snapshot.data as List<ScheduleClass>;
+                            return SliverList(
+                                delegate: SliverChildBuilderDelegate(
+                              childCount: blocks.length,
+                              (BuildContext context, int index) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(bottom: 20.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
+                                        children: [
+                                          Text(
+                                            blocks[index].startTime,
+                                            style: TextStyle(color: textColor),
+                                          ),
+                                          Text(
+                                            blocks[index].endTime,
+                                            style: TextStyle(color: textColor),
+                                          )
+                                        ],
                                       ),
-                                    )
-                                  ],
-                                ),
-                              );
-                            },
-                            separatorBuilder:
-                                (BuildContext context, int index) =>
-                                    const Divider()),
-                      );
-                    }
-                  }),
-            )
-          ])),
-        ));
+                                      Container(
+                                        height: 70,
+                                        width: screenWidth * 0.8,
+                                        decoration: BoxDecoration(
+                                            gradient: LinearGradient(colors: [
+                                              blocks[index].firstGradient,
+                                              blocks[index].secondGradient
+                                            ]),
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(15))),
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 20.0),
+                                          child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Expanded(
+                                                  child: Text(
+                                                    blocks[index].className,
+                                                    overflow: TextOverflow.fade,
+                                                    style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 18,
+                                                        fontFamily:
+                                                            "Montserrat",
+                                                        fontWeight:
+                                                            FontWeight.w500),
+                                                  ),
+                                                ),
+                                              ]),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                );
+                              },
+                            ));
+                          }
+                        },
+                      ),
+                    )
+                  ],
+                )),
+          ),
+        ),
+      ),
+    );
   }
 }

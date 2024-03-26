@@ -52,7 +52,7 @@ class _AssessmentsPageState extends State<AssessmentsPage> {
                             style: TextStyle(
                                 color: textColor,
                                 fontSize: 35,
-                                fontWeight: FontWeight.w600)),
+                                fontWeight: FontWeight.w700)),
                         Spacer()
                       ],
                     ),

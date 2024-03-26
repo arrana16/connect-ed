@@ -43,8 +43,7 @@ class AssignmentGetter {
           var assignmentName =
               descriptionList[descriptionList.length - 1] ?? '';
           var courseName = getCourseName(eventSummary.substring(
-                  0, eventSummary.length - assignmentName.length)) ??
-              '';
+              0, eventSummary.length - assignmentName.length));
           var assignmentDate = DateTime.parse(
               "${eventDate['dt'].substring(0, 4)}-${eventDate['dt'].substring(4, 6)}-${eventDate['dt'].substring(6, 8)}");
           print(
