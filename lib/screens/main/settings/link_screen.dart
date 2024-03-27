@@ -2,20 +2,18 @@
 
 import 'package:applebycollegeapp/requests/schedule-assignment/schedule_cache.dart';
 import 'package:applebycollegeapp/requests/schedule-assignment/schedule_handler.dart';
-import 'package:applebycollegeapp/screens/setup/final_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-class LinkScreen extends StatefulWidget {
-  final String title;
-  const LinkScreen({super.key, required this.title});
+class LinkeScreenSettings extends StatefulWidget {
+  const LinkeScreenSettings({super.key});
 
   @override
-  State<LinkScreen> createState() => _LinkScreenState();
+  State<LinkeScreenSettings> createState() => _LinkeScreenSettingsState();
 }
 
-class _LinkScreenState extends State<LinkScreen> {
+class _LinkeScreenSettingsState extends State<LinkeScreenSettings> {
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   String link = "";
   ScheduleGetter scheduleGetter = ScheduleGetter(
@@ -37,14 +35,29 @@ class _LinkScreenState extends State<LinkScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: Text(widget.title,
-                    style: TextStyle(
-                        fontSize: 35,
-                        fontFamily: "Montserrat",
-                        color: textColor,
-                        fontWeight: FontWeight.w700)),
+              Row(
+                children: [
+                  IconButton(
+                    splashRadius: 2,
+                    icon: Icon(
+                      Icons.arrow_back_ios_new,
+                      color: textColor,
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    constraints: const BoxConstraints(),
+                  ),
+                  Expanded(
+                    child: Text("Update your BBK Link",
+                        softWrap: true,
+                        style: TextStyle(
+                            fontSize: 35,
+                            fontFamily: "Montserrat",
+                            color: textColor,
+                            fontWeight: FontWeight.w700)),
+                  ),
+                ],
               ),
               const SizedBox(
                 height: 20,
@@ -152,13 +165,34 @@ class _LinkScreenState extends State<LinkScreen> {
                       Navigator.of(context).pop();
                       final SharedPreferences prefs = await _prefs;
                       await prefs.setString("setup", "complete");
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                          builder: (context) => const FinalSetupScreen(),
-                        ),
-                      );
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                                backgroundColor: bgColor,
+                                title: Text("Link updated",
+                                    style: TextStyle(
+                                        fontFamily: "Montserrat",
+                                        color: textColor)),
+                                content: Text(
+                                    "The link is valid and has been updated",
+                                    style: TextStyle(
+                                        fontFamily: "Montserrat",
+                                        color: textColor)),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: const Text("OK",
+                                        style: TextStyle(
+                                            fontFamily: "Montserrat")),
+                                  )
+                                ]);
+                          });
                     } else {
                       Navigator.of(context).pop();
+
                       showDialog(
                           context: context,
                           builder: (BuildContext context) {
@@ -197,7 +231,7 @@ class _LinkScreenState extends State<LinkScreen> {
                     side: BorderSide(width: 2, color: textColor),
                   ),
                   child: Text(
-                    "Continue",
+                    "Update",
                     style: TextStyle(
                         color: textColor,
                         fontFamily: "Montserrat",

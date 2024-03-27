@@ -15,10 +15,10 @@ class Schedule extends StatefulWidget {
 }
 
 class _ScheduleState extends State<Schedule> {
-  @override
   Future<List<ScheduleClass>>? _data;
   late DateTime scheduleDate;
 
+  @override
   void initState() {
     super.initState();
 
@@ -28,14 +28,13 @@ class _ScheduleState extends State<Schedule> {
     _data = scheduleGetter.getData();
   }
 
+  @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
-    double safePadding = MediaQuery.of(context).padding.top +
-        MediaQuery.of(context).padding.bottom;
     var brightness = MediaQuery.of(context).platformBrightness;
     bool isDarkMode = brightness == Brightness.dark;
-    var bgColor = isDarkMode ? Color.fromARGB(255, 11, 11, 11) : Colors.white;
+    var bgColor =
+        isDarkMode ? const Color.fromARGB(255, 11, 11, 11) : Colors.white;
     var textColor = isDarkMode ? Colors.white : Colors.black;
 
     return MaterialApp(
@@ -46,47 +45,51 @@ class _ScheduleState extends State<Schedule> {
           color: bgColor,
           child: SafeArea(
             child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15),
+                padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: CustomScrollView(
                   slivers: [
                     SliverAppBar(
                       backgroundColor: bgColor,
                       pinned: false,
                       expandedHeight: 0.0,
+                      toolbarHeight: 70,
                       automaticallyImplyLeading: false,
                       flexibleSpace: FlexibleSpaceBar(
-                        title: Row(
-                          children: [
-                            IconButton(
-                              splashRadius: 2,
-                              icon: Icon(
-                                Icons.arrow_back_ios_new,
-                                color: textColor,
+                        title: Padding(
+                          padding: const EdgeInsets.only(top: 10.0),
+                          child: Row(
+                            children: [
+                              IconButton(
+                                splashRadius: 2,
+                                icon: Icon(
+                                  Icons.arrow_back_ios_new,
+                                  color: textColor,
+                                ),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                constraints: const BoxConstraints(),
                               ),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              constraints: const BoxConstraints(),
-                            ),
-                            Text('Schedule',
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                    color: textColor,
-                                    fontSize: 35,
-                                    fontWeight: FontWeight.w600)),
-                            Spacer()
-                          ],
+                              Text('Schedule',
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      color: textColor,
+                                      fontSize: 35,
+                                      fontWeight: FontWeight.w700)),
+                              const Spacer()
+                            ],
+                          ),
                         ),
                       ),
                     ),
                     SliverPadding(
-                      padding: EdgeInsets.only(top: 15),
+                      padding: const EdgeInsets.only(top: 15),
                       sliver: FutureBuilder(
                         future: _data,
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
-                            return SliverToBoxAdapter(
+                            return const SliverToBoxAdapter(
                               child: Center(
                                 child: CircularProgressIndicator(),
                               ),
@@ -134,8 +137,9 @@ class _ScheduleState extends State<Schedule> {
                                               blocks[index].firstGradient,
                                               blocks[index].secondGradient
                                             ]),
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(15))),
+                                            borderRadius:
+                                                const BorderRadius.all(
+                                                    Radius.circular(15))),
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(
                                               horizontal: 20.0),
@@ -148,7 +152,7 @@ class _ScheduleState extends State<Schedule> {
                                                   child: Text(
                                                     blocks[index].className,
                                                     overflow: TextOverflow.fade,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                         color: Colors.white,
                                                         fontSize: 18,
                                                         fontFamily:

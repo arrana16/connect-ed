@@ -71,9 +71,10 @@ class RemoteSource {
   // Function to fetch data from the API and cache it locally
   Future<String> fetchData() async {
     print('fetchData');
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     try {
-      final response = await http.get(Uri.parse(
-          'https://appleby.myschoolapp.com/podium/feed/iCal.aspx?z=rwbg9TXaxP2HmddvSTQ7hag8xBZbtW85mYDkAvSRgQWHFAQLrIAjDzM8j%2ffMmkZ75F1qvYGSl1lZiVeFaSZ4AA%3d%3d'));
+      final String link = await prefs.getString("link") ?? '';
+      final response = await http.get(Uri.parse(link));
       if (response.statusCode != 200) {
         throw Exception('Failed to load data');
       } else {

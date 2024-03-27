@@ -20,8 +20,8 @@ enum Settings {
 
 class _AppearanceScreenState extends State<AppearanceScreen> {
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-  @override
   Settings? _setting = Settings.system;
+  @override
   Widget build(BuildContext context) {
     var brightness = MediaQuery.of(context).platformBrightness;
     if (_setting == Settings.system) {
@@ -39,7 +39,7 @@ class _AppearanceScreenState extends State<AppearanceScreen> {
         backgroundColor: bgColor,
         body: SafeArea(
             child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15.0),
+          padding: const EdgeInsets.symmetric(horizontal: 15.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -55,7 +55,7 @@ class _AppearanceScreenState extends State<AppearanceScreen> {
                       fontWeight: FontWeight.w500,
                       fontFamily: "Montserrat",
                       color: textColor)),
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
               Row(
@@ -153,16 +153,16 @@ class _AppearanceScreenState extends State<AppearanceScreen> {
                   ),
                 ],
               ),
-              Spacer(),
+              const Spacer(),
               Center(
                 child: OutlinedButton(
                   onPressed: () async {
                     final SharedPreferences prefs = await _prefs;
                     prefs.setString("AppearanceSetting", _setting!.value);
+                    // ignore: use_build_context_synchronously
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
-                        builder: (context) => FinalSetupScreen(
-                            appearanceSetting: _setting?.value ?? "system"),
+                        builder: (context) => const FinalSetupScreen(),
                       ),
                     );
                   },
@@ -180,7 +180,7 @@ class _AppearanceScreenState extends State<AppearanceScreen> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               )
             ],

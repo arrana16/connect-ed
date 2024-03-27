@@ -20,8 +20,9 @@ class ScheduleGetter {
     [Color.fromRGBO(7, 190, 231, 1), Color.fromRGBO(5, 65, 184, 1)]
   ];
   // Function to get data from the cache if available, or from the API if not
+
   Future<List<ScheduleClass>> getData() async {
-    DateTime date = DateTime(2024, 4, 8);
+    DateTime date = DateTime.now();
     try {
       final String? iCalenderData =
           await mySharedPreferences.getDataIfNotExpired();

@@ -44,20 +44,24 @@ class _AssessmentsPageState extends State<AssessmentsPage> {
             child: CustomScrollView(
               slivers: [
                 SliverAppBar(
+                  toolbarHeight: 70,
                   backgroundColor: bgColor,
                   pinned: false,
                   expandedHeight: 0.0,
                   flexibleSpace: FlexibleSpaceBar(
-                    title: Row(
-                      children: [
-                        Text('Assessments',
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                color: textColor,
-                                fontSize: 35,
-                                fontWeight: FontWeight.w700)),
-                        Spacer()
-                      ],
+                    title: Padding(
+                      padding: const EdgeInsets.only(top: 10.0),
+                      child: Row(
+                        children: [
+                          Text('Assessments',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                  color: textColor,
+                                  fontSize: 35,
+                                  fontWeight: FontWeight.w700)),
+                          Spacer()
+                        ],
+                      ),
                     ),
                   ),
                 ),

@@ -1,3 +1,4 @@
+// ignore: file_names
 import 'package:applebycollegeapp/classes/games.dart';
 import 'package:applebycollegeapp/classes/sports.dart';
 import 'package:applebycollegeapp/requests/sports/sports_cache.dart';
@@ -29,6 +30,7 @@ class _AllGamesState extends State<AllGames> {
   Sport? selectedSport;
   Future<List<Sport>>? _sports;
 
+  @override
   void initState() {
     super.initState();
     SportsCacheHandler sportsCacheHandler = SportsCacheHandler();
@@ -68,29 +70,33 @@ class _AllGamesState extends State<AllGames> {
             child: CustomScrollView(
               slivers: [
                 SliverAppBar(
+                  toolbarHeight: 70,
                   backgroundColor: bgColor,
                   pinned: false,
                   expandedHeight: 20.0,
                   automaticallyImplyLeading: false,
                   flexibleSpace: FlexibleSpaceBar(
-                    title: Row(
-                      children: [
-                        IconButton(
-                          icon: const Icon(Icons.arrow_back_ios_new),
-                          color: textColor,
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                        ),
-                        Text(widget.title,
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                color: textColor,
-                                fontSize: 35,
-                                fontFamily: 'Montserrat',
-                                fontWeight: FontWeight.w700)),
-                        const Spacer(),
-                      ],
+                    title: Padding(
+                      padding: const EdgeInsets.only(top: 10.0),
+                      child: Row(
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.arrow_back_ios_new),
+                            color: textColor,
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                          Text(widget.title,
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                  color: textColor,
+                                  fontSize: 35,
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w700)),
+                          const Spacer(),
+                        ],
+                      ),
                     ),
                   ),
                 ),

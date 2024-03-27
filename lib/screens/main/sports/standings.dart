@@ -20,6 +20,7 @@ class _StandingsWidgetState extends State<StandingsWidget> {
   Future<List<Standing>>? standings;
   Sport? selectedSport;
 
+  @override
   void initState() {
     super.initState();
   }
@@ -28,8 +29,6 @@ class _StandingsWidgetState extends State<StandingsWidget> {
   Widget build(BuildContext context) {
     var brightness = MediaQuery.of(context).platformBrightness;
     bool isDarkMode = brightness == Brightness.dark;
-    var bgColor =
-        isDarkMode ? const Color.fromARGB(255, 11, 11, 11) : Colors.white;
     var textColor = isDarkMode ? Colors.white : Colors.black;
 
     bool isAppleby = false;
@@ -46,9 +45,10 @@ class _StandingsWidgetState extends State<StandingsWidget> {
     return Column(
       children: [
         Container(
-          padding: EdgeInsets.symmetric(vertical: 8),
-          color:
-              isDarkMode ? Color.fromARGB(255, 37, 37, 37) : Colors.grey[300],
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          color: isDarkMode
+              ? const Color.fromARGB(255, 37, 37, 37)
+              : Colors.grey[300],
           child: Row(
             children: [
               SizedBox(
@@ -65,7 +65,7 @@ class _StandingsWidgetState extends State<StandingsWidget> {
                       fontWeight: FontWeight.w600,
                       color: textColor,
                       fontFamily: "Montserrat")),
-              Spacer(),
+              const Spacer(),
               SizedBox(
                   width: 25,
                   child: Text("W",
@@ -111,18 +111,17 @@ class _StandingsWidgetState extends State<StandingsWidget> {
                   isAppleby = false;
                 }
 
-                print('${standing.school_abbr} ${widget.schoolAbbr}');
                 if (standing.school_abbr == widget.schoolAbbr) {
                   isSchool = true;
                 } else {
                   isSchool = false;
                 }
                 return Container(
-                  padding: EdgeInsets.symmetric(vertical: 8),
+                  padding: const EdgeInsets.symmetric(vertical: 8),
                   color: isAppleby
-                      ? Color.fromRGBO(63, 99, 169, 1)
+                      ? const Color.fromRGBO(63, 99, 169, 1)
                       : isSchool
-                          ? Color.fromRGBO(173, 2, 2, 1)
+                          ? const Color.fromRGBO(173, 2, 2, 1)
                           : null,
                   child: Row(
                     children: [
@@ -152,7 +151,7 @@ class _StandingsWidgetState extends State<StandingsWidget> {
                                         : textColor,
                                 fontFamily: "Montserrat")),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       SizedBox(
                           width: 25,
                           child: Text(standing.wins.toString(),
@@ -221,11 +220,11 @@ class _StandingsWidgetState extends State<StandingsWidget> {
                   isSchool = false;
                 }
                 return Container(
-                  padding: EdgeInsets.symmetric(vertical: 8),
+                  padding: const EdgeInsets.symmetric(vertical: 8),
                   color: isAppleby
-                      ? Color.fromRGBO(63, 99, 169, 1)
+                      ? const Color.fromRGBO(63, 99, 169, 1)
                       : isSchool
-                          ? Color.fromRGBO(173, 2, 2, 1)
+                          ? const Color.fromRGBO(173, 2, 2, 1)
                           : null,
                   child: Row(
                     children: [
@@ -251,7 +250,7 @@ class _StandingsWidgetState extends State<StandingsWidget> {
                                       ? Colors.white
                                       : textColor,
                               fontFamily: "Montserrat")),
-                      Spacer(),
+                      const Spacer(),
                       SizedBox(
                           width: 25,
                           child: Text(standing.wins.toString(),

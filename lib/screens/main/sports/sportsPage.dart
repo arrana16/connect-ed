@@ -10,6 +10,8 @@ import 'package:applebycollegeapp/screens/main/sports/standings.dart';
 import 'package:flutter/material.dart';
 
 class SportsPage extends StatefulWidget {
+  const SportsPage({super.key});
+
   @override
   State<SportsPage> createState() => _SportsPageState();
 }
@@ -20,6 +22,7 @@ class _SportsPageState extends State<SportsPage> {
   Future<List<Game>>? _games;
   Future<List<Standing>>? _standings;
 
+  @override
   void initState() {
     super.initState();
 
@@ -46,21 +49,25 @@ class _SportsPageState extends State<SportsPage> {
           child: CustomScrollView(
             slivers: [
               SliverAppBar(
+                toolbarHeight: 70,
                 backgroundColor: bgColor,
                 pinned: false,
                 expandedHeight: 0.0,
                 flexibleSpace: FlexibleSpaceBar(
-                  title: Row(
-                    children: [
-                      Text('Sports',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              color: textColor,
-                              fontSize: 35,
-                              fontFamily: 'Montserrat',
-                              fontWeight: FontWeight.w700)),
-                      const Spacer()
-                    ],
+                  title: Padding(
+                    padding: const EdgeInsets.only(top: 10.0),
+                    child: Row(
+                      children: [
+                        Text('Sports',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                                color: textColor,
+                                fontSize: 35,
+                                fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.w700)),
+                        const Spacer()
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -77,16 +84,21 @@ class _SportsPageState extends State<SportsPage> {
                             fontSize: 22,
                             fontWeight: FontWeight.w600),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       FutureBuilder(
                           future: _games,
                           builder: (context, snapshot) {
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
-                              return Text("");
+                              return const Text("",
+                                  style: TextStyle(
+                                    fontFamily: "Montserrat",
+                                  ));
                             } else if (snapshot.hasError) {
-                              print(snapshot.error);
-                              return Text("");
+                              return const Text("",
+                                  style: TextStyle(
+                                    fontFamily: "Montserrat",
+                                  ));
                             } else {
                               final List<Game> games =
                                   snapshot.data as List<Game>;
@@ -120,20 +132,19 @@ class _SportsPageState extends State<SportsPage> {
                   future: _games,
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return SliverToBoxAdapter(
-                        child: Container(
+                      return const SliverToBoxAdapter(
+                        child: SizedBox(
                           height: 150,
-                          child: const Center(
+                          child: Center(
                             child: CircularProgressIndicator(),
                           ),
                         ),
                       );
                     } else if (snapshot.hasError) {
-                      print(snapshot.error);
                       return SliverToBoxAdapter(
                         child: Center(
                           child: Text('Error: ${snapshot.error}',
-                              style: TextStyle(color: Colors.white)),
+                              style: const TextStyle(color: Colors.white)),
                         ),
                       );
                     } else {
@@ -147,7 +158,7 @@ class _SportsPageState extends State<SportsPage> {
                           .toList();
 
                       return SliverToBoxAdapter(
-                        child: Container(
+                        child: SizedBox(
                           height: 150.0,
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
@@ -185,7 +196,7 @@ class _SportsPageState extends State<SportsPage> {
                             fontSize: 22,
                             fontWeight: FontWeight.w600),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       FutureBuilder(
                           future: _games,
                           builder: (context, snapshot) {
@@ -193,7 +204,6 @@ class _SportsPageState extends State<SportsPage> {
                                 ConnectionState.waiting) {
                               return const Text("");
                             } else if (snapshot.hasError) {
-                              print(snapshot.error);
                               return const Text("");
                             } else {
                               final List<Game> games =
@@ -229,8 +239,8 @@ class _SportsPageState extends State<SportsPage> {
                 future: _games,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return SliverToBoxAdapter(
-                      child: Container(
+                    return const SliverToBoxAdapter(
+                      child: SizedBox(
                         height: 150,
                         child: Center(
                           child: CircularProgressIndicator(),
@@ -238,11 +248,10 @@ class _SportsPageState extends State<SportsPage> {
                       ),
                     );
                   } else if (snapshot.hasError) {
-                    print(snapshot.error);
                     return SliverToBoxAdapter(
                       child: Center(
                         child: Text('Error: ${snapshot.error}',
-                            style: TextStyle(color: Colors.white)),
+                            style: const TextStyle(color: Colors.white)),
                       ),
                     );
                   } else {
@@ -256,7 +265,7 @@ class _SportsPageState extends State<SportsPage> {
                         .toList();
 
                     return SliverToBoxAdapter(
-                      child: Container(
+                      child: SizedBox(
                         height: 150.0,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
@@ -296,7 +305,7 @@ class _SportsPageState extends State<SportsPage> {
                                 fontFamily: "Montserrat",
                                 fontSize: 22,
                                 fontWeight: FontWeight.w600)),
-                        Spacer(),
+                        const Spacer(),
                         FutureBuilder(
                           future: _sports,
                           builder: (context, snapshot) {

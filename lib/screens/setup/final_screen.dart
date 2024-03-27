@@ -2,20 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:applebycollegeapp/main.dart';
 
 class FinalSetupScreen extends StatelessWidget {
-  final String appearanceSetting;
-  const FinalSetupScreen({super.key, required this.appearanceSetting});
-
+  const FinalSetupScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     var brightness = MediaQuery.of(context).platformBrightness;
-
-    if (appearanceSetting == "system") {
-      brightness = MediaQuery.of(context).platformBrightness;
-    } else if (appearanceSetting == "dark") {
-      brightness = Brightness.dark;
-    } else {
-      brightness = Brightness.light;
-    }
 
     var isDarkMode = brightness == Brightness.dark;
     var bgColor = isDarkMode ? Color.fromARGB(255, 11, 11, 11) : Colors.white;

@@ -39,19 +39,17 @@ class _HomeScreenState extends State<HomeScreen> {
     _games = sportsCacheHandler.getGames();
   }
 
+  @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
-    double safePadding = MediaQuery.of(context).padding.top;
 
     var brightness = MediaQuery.of(context).platformBrightness;
+
     bool isDarkMode = brightness == Brightness.dark;
-    var bgColor = isDarkMode ? Color.fromARGB(255, 11, 11, 11) : Colors.white;
+    var bgColor =
+        isDarkMode ? const Color.fromARGB(255, 11, 11, 11) : Colors.white;
     var textColor = isDarkMode ? Colors.white : Colors.black;
 
-    AssignmentGetter assignmentGetter = AssignmentGetter(
-        remoteSource: RemoteSource(MySharedPreferences()),
-        mySharedPreferences: MySharedPreferences());
     return MaterialApp(
         theme: ThemeData(fontFamily: "Montserrat"),
         home: Scaffold(
@@ -61,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SliverAppBar(
                 backgroundColor: bgColor,
                 expandedHeight: 0,
-                bottom: PreferredSize(
+                bottom: const PreferredSize(
                   // Add this code
                   preferredSize: Size.fromHeight(140), // Add this code
                   child: Text(''), // Add this code
@@ -83,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               horizontal: 15, vertical: 20),
                           child: Row(
                             children: [
-                              Container(
+                              SizedBox(
                                 width: screenWidth * 0.55,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -173,7 +171,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               horizontal: 15, vertical: 20),
                           child: Row(
                             children: [
-                              Container(
+                              SizedBox(
                                 width: screenWidth * 0.55,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -223,7 +221,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ],
                                 ),
                               ),
-                              Spacer(),
+                              const Spacer(),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
@@ -268,8 +266,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 future: _games,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return SliverToBoxAdapter(
-                      child: Container(
+                    return const SliverToBoxAdapter(
+                      child: SizedBox(
                         height: 150,
                         child: Center(
                           child: CircularProgressIndicator(),
@@ -277,11 +275,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     );
                   } else if (snapshot.hasError) {
-                    print(snapshot.error);
                     return SliverToBoxAdapter(
                       child: Center(
                         child: Text('Error: ${snapshot.error}',
-                            style: TextStyle(color: Colors.white)),
+                            style: TextStyle(color: textColor)),
                       ),
                     );
                   } else {
@@ -297,7 +294,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     return SliverToBoxAdapter(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                        child: Container(
+                        child: SizedBox(
                           height: 150.0,
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
@@ -340,12 +337,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               SliverPadding(
-                padding: EdgeInsets.only(top: 10),
+                padding: const EdgeInsets.only(top: 10),
                 sliver: FutureBuilder(
                   future: _assessments,
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return SliverToBoxAdapter(
+                      return const SliverToBoxAdapter(
                         child: Center(
                           child: CircularProgressIndicator(),
                         ),
@@ -391,7 +388,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                 ),
               ),
-              SliverPadding(padding: EdgeInsets.only(top: 100)),
+              const SliverPadding(padding: EdgeInsets.only(top: 100)),
             ],
           ),
         ));

@@ -1,4 +1,3 @@
-import 'package:applebycollegeapp/providers/blocksSet_provider.dart';
 import 'package:applebycollegeapp/screens/main/assessments/AssesmentsPage.dart';
 import 'package:applebycollegeapp/screens/main/settings/SettingScreen.dart';
 import 'package:applebycollegeapp/screens/main/sports/sportsPage.dart';
@@ -18,8 +17,8 @@ void main() async {
   appearanceSetting = appearanceSetting ?? "system";
   tz.initializeTimeZones();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-      .then((value) => runApp(MaterialApp(home: WelcomeScreen())
-          // MaterialApp(home: setup == "complete" ? ACapp() : WelcomeScreen()),
+      .then((value) => runApp(
+            MaterialApp(home: setup == "complete" ? ACapp() : WelcomeScreen()),
           ));
 }
 

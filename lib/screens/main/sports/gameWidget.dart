@@ -1,5 +1,5 @@
+// ignore: file_names
 import 'package:applebycollegeapp/classes/games.dart';
-import 'package:applebycollegeapp/classes/sports.dart';
 import 'package:applebycollegeapp/classes/standings.dart';
 import 'package:applebycollegeapp/requests/sports/sports_cache.dart';
 import 'package:applebycollegeapp/screens/main/sports/standings.dart';
@@ -20,11 +20,12 @@ class GameWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     var brightness = MediaQuery.of(context).platformBrightness;
     bool isDarkMode = brightness == Brightness.dark;
-    var bgColor = isDarkMode ? Color.fromARGB(255, 25, 25, 27) : Colors.white;
+    var bgColor =
+        isDarkMode ? const Color.fromARGB(255, 25, 25, 27) : Colors.white;
     var textColor = isDarkMode ? Colors.white : Colors.black;
     var blurColor = isDarkMode
-        ? Color.fromRGBO(0, 0, 0, 0.894)
-        : Color.fromRGBO(197, 197, 197, 0.898);
+        ? const Color.fromRGBO(0, 0, 0, 0.894)
+        : const Color.fromRGBO(197, 197, 197, 0.898);
 
     double height = 0;
 
@@ -50,7 +51,7 @@ class GameWidget extends StatelessWidget {
                 color: blurColor,
                 spreadRadius: 1,
                 blurRadius: 5,
-                offset: Offset(0, 4), // changes position of shadow
+                offset: const Offset(0, 4), // changes position of shadow
               ),
             ]),
         width: fixedWith ? 320 : null,
@@ -68,7 +69,7 @@ class GameWidget extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Container(
+                    SizedBox(
                       width: 50,
                       child: Text(game.homeScore,
                           textAlign: TextAlign.center,
@@ -86,7 +87,7 @@ class GameWidget extends StatelessWidget {
                             image: AssetImage(game.homeLogo),
                             errorBuilder: ((context, error, stackTrace) =>
                                 Container(color: Colors.red))),
-                        SizedBox(height: 3),
+                        const SizedBox(height: 3),
                         Text(game.homeabbr,
                             style: TextStyle(
                                 color: textColor,
@@ -118,7 +119,7 @@ class GameWidget extends StatelessWidget {
                             image: AssetImage(game.awayLogo),
                             errorBuilder: ((context, error, stackTrace) =>
                                 Container(color: Colors.blue))),
-                        SizedBox(height: 3),
+                        const SizedBox(height: 3),
                         Text(game.awayabbr,
                             style: TextStyle(
                                 color: textColor,
@@ -127,7 +128,7 @@ class GameWidget extends StatelessWidget {
                                 fontWeight: FontWeight.w400)),
                       ],
                     ),
-                    Container(
+                    SizedBox(
                       width: 50,
                       child: Text(game.awayScore,
                           textAlign: TextAlign.center,
@@ -161,9 +162,10 @@ class ExpandedGameWidget extends StatefulWidget {
 
 class _ExpandedGameWidgetState extends State<ExpandedGameWidget> {
   Future<List<Standing>>? _standings;
+
+  @override
   void initState() {
     super.initState();
-    SportsCacheHandler sportsCacheHandler = SportsCacheHandler();
     _standings = SportsCacheHandler().getStandings();
   }
 
@@ -223,7 +225,7 @@ class _ExpandedGameWidgetState extends State<ExpandedGameWidget> {
                     const SliverPadding(padding: EdgeInsets.only(top: 15)),
                     SliverToBoxAdapter(
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 2),
+                        padding: const EdgeInsets.symmetric(horizontal: 2),
                         child: Container(
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(22),
@@ -233,7 +235,7 @@ class _ExpandedGameWidgetState extends State<ExpandedGameWidget> {
                                   color: blurColor,
                                   spreadRadius: 1,
                                   blurRadius: 5,
-                                  offset: Offset(
+                                  offset: const Offset(
                                       0, 4), // changes position of shadow
                                 ),
                               ]),
@@ -256,7 +258,7 @@ class _ExpandedGameWidgetState extends State<ExpandedGameWidget> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceAround,
                                   children: [
-                                    Container(
+                                    SizedBox(
                                       width: 50,
                                       child: Text(widget.game.homeScore,
                                           textAlign: TextAlign.center,
@@ -276,7 +278,7 @@ class _ExpandedGameWidgetState extends State<ExpandedGameWidget> {
                                             errorBuilder: ((context, error,
                                                     stackTrace) =>
                                                 Container(color: Colors.blue))),
-                                        SizedBox(height: 3),
+                                        const SizedBox(height: 3),
                                         Text(widget.game.homeabbr,
                                             style: TextStyle(
                                                 color: textColor,
@@ -310,7 +312,7 @@ class _ExpandedGameWidgetState extends State<ExpandedGameWidget> {
                                             errorBuilder: ((context, error,
                                                     stackTrace) =>
                                                 Container(color: Colors.red))),
-                                        SizedBox(height: 3),
+                                        const SizedBox(height: 3),
                                         Text(widget.game.awayabbr,
                                             style: TextStyle(
                                                 color: textColor,
@@ -319,7 +321,7 @@ class _ExpandedGameWidgetState extends State<ExpandedGameWidget> {
                                                 fontWeight: FontWeight.w400)),
                                       ],
                                     ),
-                                    Container(
+                                    SizedBox(
                                       width: 50,
                                       child: Text(widget.game.awayScore,
                                           textAlign: TextAlign.center,
@@ -345,8 +347,7 @@ class _ExpandedGameWidgetState extends State<ExpandedGameWidget> {
                     ),
                     const SliverPadding(padding: EdgeInsets.only(top: 30)),
                     SliverToBoxAdapter(
-                        child: Container(
-                            child: Column(
+                        child: Column(
                       children: [
                         Row(
                           children: [
@@ -382,7 +383,7 @@ class _ExpandedGameWidgetState extends State<ExpandedGameWidget> {
                           },
                         )
                       ],
-                    )))
+                    ))
                   ],
                 ),
               ),
