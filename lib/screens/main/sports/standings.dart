@@ -111,6 +111,7 @@ class _StandingsWidgetState extends State<StandingsWidget> {
                   isAppleby = false;
                 }
 
+                print('${standing.school_abbr} ${widget.schoolAbbr}');
                 if (standing.school_abbr == widget.schoolAbbr) {
                   isSchool = true;
                 } else {
@@ -138,15 +139,19 @@ class _StandingsWidgetState extends State<StandingsWidget> {
                                         : textColor,
                                 fontFamily: "Montserrat")),
                       ),
-                      Text(standing.school_name,
-                          style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              color: isAppleby
-                                  ? Colors.white
-                                  : isSchool
-                                      ? Colors.white
-                                      : textColor,
-                              fontFamily: "Montserrat")),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width - 180,
+                        child: Text(standing.school_name,
+                            softWrap: true,
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                color: isAppleby
+                                    ? Colors.white
+                                    : isSchool
+                                        ? Colors.white
+                                        : textColor,
+                                fontFamily: "Montserrat")),
+                      ),
                       Spacer(),
                       SizedBox(
                           width: 25,

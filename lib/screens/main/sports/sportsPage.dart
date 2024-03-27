@@ -75,7 +75,7 @@ class _SportsPageState extends State<SportsPage> {
                             color: textColor,
                             fontFamily: "Montserrat",
                             fontSize: 22,
-                            fontWeight: FontWeight.w500),
+                            fontWeight: FontWeight.w600),
                       ),
                       Spacer(),
                       FutureBuilder(
@@ -183,7 +183,7 @@ class _SportsPageState extends State<SportsPage> {
                             color: textColor,
                             fontFamily: "Montserrat",
                             fontSize: 22,
-                            fontWeight: FontWeight.w500),
+                            fontWeight: FontWeight.w600),
                       ),
                       Spacer(),
                       FutureBuilder(
@@ -295,7 +295,7 @@ class _SportsPageState extends State<SportsPage> {
                                 color: textColor,
                                 fontFamily: "Montserrat",
                                 fontSize: 22,
-                                fontWeight: FontWeight.w500)),
+                                fontWeight: FontWeight.w600)),
                         Spacer(),
                         FutureBuilder(
                           future: _sports,
@@ -303,7 +303,7 @@ class _SportsPageState extends State<SportsPage> {
                             if (snapshot.hasData) {
                               List<Sport> sports = snapshot.data as List<Sport>;
                               return DropdownButton<Sport>(
-                                value: selectedSport ?? sports[1],
+                                value: selectedSport ?? sports[0],
                                 icon: const Icon(Icons.arrow_drop_down),
                                 iconSize: 20,
                                 elevation: 18,
@@ -331,9 +331,9 @@ class _SportsPageState extends State<SportsPage> {
                                 }).toList(),
                               );
                             } else if (snapshot.hasError) {
-                              return Text("${snapshot.error}");
+                              return const Text("");
                             } else {
-                              return const CircularProgressIndicator();
+                              return const Text("");
                             }
                           },
                         ),

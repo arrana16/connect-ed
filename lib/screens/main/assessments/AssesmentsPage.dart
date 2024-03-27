@@ -7,6 +7,9 @@ import 'package:applebycollegeapp/classes/assessment.dart';
 import 'package:intl/intl.dart';
 
 class AssessmentsPage extends StatefulWidget {
+  const AssessmentsPage({
+    Key? key,
+  }) : super(key: key);
   @override
   State<AssessmentsPage> createState() => _AssessmentsPageState();
 }

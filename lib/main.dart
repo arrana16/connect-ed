@@ -1,11 +1,11 @@
 import 'package:applebycollegeapp/providers/blocksSet_provider.dart';
 import 'package:applebycollegeapp/screens/main/assessments/AssesmentsPage.dart';
+import 'package:applebycollegeapp/screens/main/settings/SettingScreen.dart';
 import 'package:applebycollegeapp/screens/main/sports/sportsPage.dart';
 import 'package:applebycollegeapp/screens/setup/welcome_screen.dart';
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:applebycollegeapp/screens/main/home/home.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/data/latest.dart' as tz;
@@ -14,22 +14,17 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   final String? setup = prefs.getString('setup');
+  String? appearanceSetting = prefs.getString('AppearanceSetting');
+  appearanceSetting = appearanceSetting ?? "system";
   tz.initializeTimeZones();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-      .then((value) => runApp(MultiProvider(
-            providers: [
-              ChangeNotifierProvider(
-                create: (context) => blocksSet(),
-              ),
-            ],
-            child: MaterialApp(
-                home: setup == "complete" ? ACapp() : WelcomeScreen()),
-          )));
+      .then((value) => runApp(MaterialApp(home: WelcomeScreen())
+          // MaterialApp(home: setup == "complete" ? ACapp() : WelcomeScreen()),
+          ));
 }
 
 class ACapp extends StatefulWidget {
   const ACapp({Key? key}) : super(key: key);
-
   @override
   State<ACapp> createState() => _ACappState();
 }
@@ -45,7 +40,7 @@ class _ACappState extends State<ACapp> {
     HomeScreen(),
     AssessmentsPage(),
     SportsPage(),
-    Text("Settings")
+    SettingScreen(),
   ];
 
   Widget build(BuildContext context) {

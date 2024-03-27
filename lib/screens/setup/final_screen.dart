@@ -2,12 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:applebycollegeapp/main.dart';
 
 class FinalSetupScreen extends StatelessWidget {
-  const FinalSetupScreen({super.key});
+  final String appearanceSetting;
+  const FinalSetupScreen({super.key, required this.appearanceSetting});
 
   @override
   Widget build(BuildContext context) {
     var brightness = MediaQuery.of(context).platformBrightness;
-    bool isDarkMode = brightness == Brightness.dark;
+
+    if (appearanceSetting == "system") {
+      brightness = MediaQuery.of(context).platformBrightness;
+    } else if (appearanceSetting == "dark") {
+      brightness = Brightness.dark;
+    } else {
+      brightness = Brightness.light;
+    }
+
+    var isDarkMode = brightness == Brightness.dark;
     var bgColor = isDarkMode ? Color.fromARGB(255, 11, 11, 11) : Colors.white;
     var textColor = isDarkMode ? Colors.white : Colors.black;
 
@@ -25,6 +35,7 @@ class FinalSetupScreen extends StatelessWidget {
                   style: TextStyle(
                       color: textColor,
                       fontWeight: FontWeight.w600,
+                      fontFamily: "Montserrat",
                       fontSize: 40),
                 ),
               ),
@@ -32,7 +43,7 @@ class FinalSetupScreen extends StatelessWidget {
                 onPressed: () async {
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
-                      builder: (context) => const ACapp(),
+                      builder: (context) => ACapp(),
                     ),
                   );
                 },
@@ -43,8 +54,10 @@ class FinalSetupScreen extends StatelessWidget {
                 ),
                 child: Text(
                   "Go to App",
-                  style:
-                      TextStyle(color: textColor, fontWeight: FontWeight.w600),
+                  style: TextStyle(
+                      color: textColor,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: "Montserrat"),
                 ),
               ),
               Spacer()

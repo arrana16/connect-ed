@@ -372,7 +372,9 @@ class _ExpandedGameWidgetState extends State<ExpandedGameWidget> {
                               final List<Standing> standings =
                                   snapshot.data as List<Standing>;
                               return StandingsWidget(
-                                schoolAbbr: widget.game.awayabbr,
+                                schoolAbbr: widget.game.awayabbr == "AC"
+                                    ? widget.game.homeabbr
+                                    : widget.game.awayabbr,
                                 standings: standings,
                                 sportID: widget.game.sportsID,
                               );

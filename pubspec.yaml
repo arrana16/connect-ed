@@ -44,6 +44,7 @@ dependencies:
     intl: ^0.18.1
     timezone: ^0.9.2
     icalendar_parser: ^2.0.0
+    url_launcher: ^6.2.4
 
 dev_dependencies:
     flutter_test:
@@ -70,6 +71,39 @@ flutter:
     assets:
         - assets/AC Logo.png
         - assets/Appleby Aerial.png
+        - assets/SAC Logo.png
+        - assets/RSGC Logo.png
+        - assets/ALB Logo.png
+        - assets/BG Logo.png
+        - assets/BH Logo.png
+        - assets/BSS Logo.png
+        - assets/CDS Logo.png
+        - assets/CPC Logo.png
+        - assets/CS Logo.png
+        - assets/DLS Logo.png
+        - assets/GCS Logo.png
+        - assets/HC Logo.png
+        - assets/HNMCS Logo.png
+        - assets/HS Logo.png
+        - assets/HTS Logo.png
+        - assets/HSC Logo.png
+        - assets/LCS Logo.png
+        - assets/NS Logo.png
+        - assets/PC Logo.png
+        - assets/RC Logo.png
+        - assets/RDS Logo.png
+        - assets/SAC Logo.png
+        - assets/SAS Logo.png
+        - assets/SHS Logo.png
+        - assets/SJK Logo.png
+        - assets/SMC Logo.png
+        - assets/SMLS Logo.png
+        - assets/TCS Logo.png
+        - assets/TFS Logo.png
+        - assets/TMS Logo.png
+        - assets/TYS Logo.png
+        - assets/UCC Logo.png
+        - assets/VC Logo.png
 
     # An image asset can refer to one or more resolution-specific "variants", see
     # https://flutter.dev/assets-and-images/#resolution-aware
