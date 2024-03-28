@@ -55,6 +55,7 @@ class _ScheduleState extends State<Schedule> {
                       toolbarHeight: 70,
                       automaticallyImplyLeading: false,
                       flexibleSpace: FlexibleSpaceBar(
+                        titlePadding: EdgeInsets.zero,
                         title: Padding(
                           padding: const EdgeInsets.only(top: 10.0),
                           child: Row(

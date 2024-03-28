@@ -44,11 +44,18 @@ class _AssessmentsPageState extends State<AssessmentsPage> {
             child: CustomScrollView(
               slivers: [
                 SliverAppBar(
+                  leading: null,
+                  actions: [],
                   toolbarHeight: 70,
                   backgroundColor: bgColor,
-                  pinned: false,
+                  automaticallyImplyLeading: false,
+                  centerTitle: false,
                   expandedHeight: 0.0,
+                  leadingWidth: 8,
+                  titleSpacing: 0,
+                  floating: true,
                   flexibleSpace: FlexibleSpaceBar(
+                    titlePadding: EdgeInsets.zero,
                     title: Padding(
                       padding: const EdgeInsets.only(top: 10.0),
                       child: Row(
@@ -59,19 +66,19 @@ class _AssessmentsPageState extends State<AssessmentsPage> {
                                   color: textColor,
                                   fontSize: 35,
                                   fontWeight: FontWeight.w700)),
-                          Spacer()
+                          const Spacer()
                         ],
                       ),
                     ),
                   ),
                 ),
                 SliverPadding(
-                  padding: EdgeInsets.only(top: 10),
+                  padding: const EdgeInsets.only(top: 10),
                   sliver: FutureBuilder(
                     future: _data,
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return SliverToBoxAdapter(
+                        return const SliverToBoxAdapter(
                           child: Center(
                             child: CircularProgressIndicator(),
                           ),
@@ -95,7 +102,7 @@ class _AssessmentsPageState extends State<AssessmentsPage> {
                             if (index == 0) {
                               return Container(
                                   decoration: BoxDecoration(
-                                      gradient: LinearGradient(
+                                      gradient: const LinearGradient(
                                           begin: Alignment.topLeft,
                                           end: Alignment.bottomRight,
                                           colors: [
@@ -103,8 +110,8 @@ class _AssessmentsPageState extends State<AssessmentsPage> {
                                             Color.fromARGB(255, 255, 148, 33),
                                           ]),
                                       borderRadius: BorderRadius.circular(10)),
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
+                                  child: const Padding(
+                                    padding: EdgeInsets.symmetric(
                                         horizontal: 15.0, vertical: 10),
                                     child: Text(
                                       "Upcoming Assesments",
@@ -164,7 +171,7 @@ class _AssessmentsPageState extends State<AssessmentsPage> {
                           if (index == 0) {
                             return Container(
                                 decoration: BoxDecoration(
-                                    gradient: LinearGradient(
+                                    gradient: const LinearGradient(
                                         begin: Alignment.topLeft,
                                         end: Alignment.bottomRight,
                                         colors: [
@@ -172,8 +179,8 @@ class _AssessmentsPageState extends State<AssessmentsPage> {
                                           Color.fromARGB(255, 3, 179, 155)
                                         ]),
                                     borderRadius: BorderRadius.circular(10)),
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
+                                child: const Padding(
+                                  padding: EdgeInsets.symmetric(
                                       horizontal: 15.0, vertical: 10),
                                   child: Text(
                                     "Previous Assesments",

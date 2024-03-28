@@ -54,6 +54,7 @@ class _SportsPageState extends State<SportsPage> {
                 pinned: false,
                 expandedHeight: 0.0,
                 flexibleSpace: FlexibleSpaceBar(
+                  titlePadding: EdgeInsets.zero,
                   title: Padding(
                     padding: const EdgeInsets.only(top: 10.0),
                     child: Row(

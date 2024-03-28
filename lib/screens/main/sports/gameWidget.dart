@@ -196,6 +196,7 @@ class _ExpandedGameWidgetState extends State<ExpandedGameWidget> {
                       expandedHeight: 0.0,
                       automaticallyImplyLeading: false,
                       flexibleSpace: FlexibleSpaceBar(
+                        titlePadding: EdgeInsets.zero,
                         title: Row(
                           children: [
                             IconButton(

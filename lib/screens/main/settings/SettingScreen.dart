@@ -35,6 +35,7 @@ class _SettingScreenState extends State<SettingScreen> {
               floating: false,
               pinned: true,
               flexibleSpace: FlexibleSpaceBar(
+                titlePadding: EdgeInsets.zero,
                 title: Row(
                   children: [
                     Padding(
@@ -52,6 +53,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 ),
               ),
             ),
+            const SliverPadding(padding: EdgeInsets.only(top: 20)),
             SliverToBoxAdapter(
               child: GestureDetector(
                 onTap: (() => Navigator.of(context).push(

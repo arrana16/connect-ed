@@ -145,6 +145,7 @@ class _LinkeScreenSettingsState extends State<LinkeScreenSettings> {
               Center(
                 child: OutlinedButton(
                   onPressed: () async {
+                    final SharedPreferences prefs = await _prefs;
                     showDialog(
                         context: context,
                         builder: (BuildContext context) {
@@ -161,9 +162,9 @@ class _LinkeScreenSettingsState extends State<LinkeScreenSettings> {
                                     color: textColor)),
                           );
                         });
+                    String originalLink = prefs.getString("link") ?? "";
                     if (await checkLink(link)) {
                       Navigator.of(context).pop();
-                      final SharedPreferences prefs = await _prefs;
                       await prefs.setString("setup", "complete");
                       showDialog(
                           context: context,
@@ -192,7 +193,7 @@ class _LinkeScreenSettingsState extends State<LinkeScreenSettings> {
                           });
                     } else {
                       Navigator.of(context).pop();
-
+                      prefs.setString("link", originalLink);
                       showDialog(
                           context: context,
                           builder: (BuildContext context) {

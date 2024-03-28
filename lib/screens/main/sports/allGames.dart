@@ -76,6 +76,7 @@ class _AllGamesState extends State<AllGames> {
                   expandedHeight: 20.0,
                   automaticallyImplyLeading: false,
                   flexibleSpace: FlexibleSpaceBar(
+                    titlePadding: EdgeInsets.zero,
                     title: Padding(
                       padding: const EdgeInsets.only(top: 10.0),
                       child: Row(
