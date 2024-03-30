@@ -169,11 +169,26 @@ class _SettingScreenState extends State<SettingScreen> {
                     )),
               ),
             ),
-            const SliverPadding(padding: EdgeInsets.only(top: 30)),
+            const SliverPadding(padding: EdgeInsets.only(top: 50)),
             SliverToBoxAdapter(
               child: Center(
-                child: Text("Made by Abdur-Rahman Rana '25",
-                    style: TextStyle(color: secondaryTextColor)),
+                child: Column(
+                  children: [
+                    Text("Made by Abdur-Rahman Rana '25",
+                        style: TextStyle(
+                            color: secondaryTextColor,
+                            fontFamily: "Montserrat",
+                            fontWeight: FontWeight.w500,
+                            fontSize: 15)),
+                    SizedBox(height: 5),
+                    Text("Contributors: Demilade Olawumni '25",
+                        style: TextStyle(
+                            color: secondaryTextColor,
+                            fontFamily: "Montserrat",
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400)),
+                  ],
+                ),
               ),
             ),
           ],

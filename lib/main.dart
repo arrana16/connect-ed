@@ -16,11 +16,10 @@ void main() async {
   String? appearanceSetting = prefs.getString('AppearanceSetting');
   appearanceSetting = appearanceSetting ?? "system";
   tz.initializeTimeZones();
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp
-  ]).then((value) => runApp(
-      // MaterialApp(home: setup == "complete" ? const ACapp() : const WelcomeScreen())));
-      MaterialApp(home: WelcomeScreen())));
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
+      (value) => runApp(MaterialApp(
+          home: setup == "complete" ? const ACapp() : const WelcomeScreen())));
+  // MaterialApp(home: WelcomeScreen())));
 }
 
 class ACapp extends StatefulWidget {
