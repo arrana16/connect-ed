@@ -3,13 +3,20 @@
 This is a student portal application for Appleby College written using the Flutter framework. This app displays students their schedule, assignments and sports games simply from the click of an app. This app is not intended to completely replace the school's existing management framework with Blackbaud, but instead make indvidual data retrieval faster. 
 
 # Images
-<img width="407" alt="image" src="https://github.com/arrana16/applebycollegeapp/assets/69128309/728a4d4d-f952-4f34-874e-3ddd1b1e317b">
-<img width="407" alt="image" src="https://github.com/arrana16/applebycollegeapp/assets/69128309/13a10a45-fcb6-433a-8e14-4febb947c311">
 
-<img width="407" alt="image" src="https://github.com/arrana16/applebycollegeapp/assets/69128309/9177c2b1-5365-4432-82af-d693c63873ea">
-<img width="407" alt="image" src="https://github.com/arrana16/applebycollegeapp/assets/69128309/00ac7273-1ee4-4c00-a1a0-e8e4775ba852">
 
-<img width="407" alt="image" src="https://github.com/arrana16/applebycollegeapp/assets/69128309/8f2d6830-0a10-4e1f-96d0-e868c3b6941d">
-<img width="407" alt="image" src="https://github.com/arrana16/applebycollegeapp/assets/69128309/ed424511-6fb1-467f-b14b-e536f0689c5f">
+<img width="407" alt="image" src="https://github.com/arrana16/ac-portal-app/assets/69128309/ec4cf486-6e00-4e6c-8a9a-0752d07873e8">
+<img width="407" alt="image" src="https://github.com/arrana16/ac-portal-app/assets/69128309/6261a449-03d1-4edf-8779-a16a51e8720a">
 
-<i>Some of these features may be modified in the final product</i>
+<img width="407" alt="image" src="https://github.com/arrana16/ac-portal-app/assets/69128309/0f0f1058-22cf-4209-b985-c4ab5e2b9d28">
+<img width="407" alt="image" src="https://github.com/arrana16/ac-portal-app/assets/69128309/09e1b0d6-daf6-42eb-9cc6-bce0db2e41df">
+
+<img width="407" alt="image" src="https://github.com/arrana16/ac-portal-app/assets/69128309/004ce92a-5da5-4880-b597-c53074056f25">
+<img width="407" alt="image" src="https://github.com/arrana16/ac-portal-app/assets/69128309/57996b54-8be1-41ea-94a5-cbbabbfefebf">
+
+<img width="407" alt="image" src="https://github.com/arrana16/ac-portal-app/assets/69128309/ebad8a7f-1082-45ee-9382-9b3fae6d5c26">
+<img width="407" alt="image" src="https://github.com/arrana16/ac-portal-app/assets/69128309/c0b854ee-efbe-475f-8e74-ae020a9e5888">
+
+<img width="407" alt="image" src="https://github.com/arrana16/ac-portal-app/assets/69128309/12f01920-b49a-4f4b-bf3e-b3e606a3e78f">
+<img width="407" alt="image" src="https://github.com/arrana16/ac-portal-app/assets/69128309/5e2f107d-eba1-4cb9-abf1-3db02e31c7e2">
+
