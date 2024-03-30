@@ -1,11 +1,13 @@
 class Sport {
   String name;
+  // ignore: non_constant_identifier_names
   String league_code;
   int id;
   String term;
 
   Sport(
       {required this.name,
+      // ignore: non_constant_identifier_names
       required this.league_code,
       required this.id,
       required this.term});

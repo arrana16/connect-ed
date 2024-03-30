@@ -1,3 +1,4 @@
+// ignore: file_names
 //write the basic boilerplate for a stateless widget
 
 import 'package:applebycollegeapp/classes/games.dart';

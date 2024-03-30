@@ -16,10 +16,10 @@ void main() async {
   String? appearanceSetting = prefs.getString('AppearanceSetting');
   appearanceSetting = appearanceSetting ?? "system";
   tz.initializeTimeZones();
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-      .then((value) => runApp(
-            MaterialApp(home: setup == "complete" ? ACapp() : WelcomeScreen()),
-          ));
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
+      (value) => runApp(MaterialApp(
+          home: setup == "complete" ? const ACapp() : const WelcomeScreen())));
+  // MaterialApp(home: WelcomeScreen())));
 }
 
 class ACapp extends StatefulWidget {
@@ -36,57 +36,56 @@ class _ACappState extends State<ACapp> {
 
   int selectedIndex = 0;
   List<Widget> widgetOptions = <Widget>[
-    HomeScreen(),
-    AssessmentsPage(),
-    SportsPage(),
-    SettingScreen(),
+    const HomeScreen(),
+    const AssessmentsPage(),
+    const SportsPage(),
+    const SettingScreen(),
   ];
 
+  @override
   Widget build(BuildContext context) {
     var brightness = MediaQuery.of(context).platformBrightness;
     bool isDarkMode = brightness == Brightness.dark;
 
     return Scaffold(
       body: PageStorage(
-        child: widgetOptions[selectedIndex],
         bucket: PageStorageBucket(),
+        child: widgetOptions[selectedIndex],
       ),
       extendBody: true,
-      bottomNavigationBar: Container(
-        child: CustomNavigationBar(
-          elevation: 5,
-          backgroundColor: isDarkMode
-              ? Color.fromRGBO(29, 29, 29, 1)
-              : Color.fromRGBO(243, 243, 243, 1),
-          strokeColor: Color.fromRGBO(63, 99, 169, 0),
-          selectedColor: Color.fromRGBO(63, 99, 169, 1),
-          unSelectedColor: isDarkMode
-              ? Color.fromRGBO(202, 202, 202, 1)
-              : Color.fromRGBO(184, 184, 184, 1),
-          isFloating: true,
-          borderRadius: Radius.circular(18),
-          iconSize: 30,
-          scaleCurve: Curves.easeOutCirc,
-          bubbleCurve: Curves.easeInOutSine,
-          items: <CustomNavigationBarItem>[
-            CustomNavigationBarItem(
-              icon: Icon(Icons.home_rounded),
-            ),
-            CustomNavigationBarItem(
-              icon: Icon(Icons.description_rounded),
-            ),
-            CustomNavigationBarItem(
-              icon: Icon(Icons.sports_basketball_rounded),
-            ),
-            CustomNavigationBarItem(
-              icon: Icon(Icons.settings_rounded),
-            ),
-          ],
-          currentIndex: selectedIndex,
-          onTap: ((value) => setState(() {
-                selectedIndex = value;
-              })),
-        ),
+      bottomNavigationBar: CustomNavigationBar(
+        elevation: 5,
+        backgroundColor: isDarkMode
+            ? const Color.fromRGBO(29, 29, 29, 1)
+            : const Color.fromRGBO(243, 243, 243, 1),
+        strokeColor: const Color.fromRGBO(63, 99, 169, 0),
+        selectedColor: const Color.fromRGBO(63, 99, 169, 1),
+        unSelectedColor: isDarkMode
+            ? const Color.fromRGBO(202, 202, 202, 1)
+            : const Color.fromRGBO(184, 184, 184, 1),
+        isFloating: true,
+        borderRadius: const Radius.circular(18),
+        iconSize: 30,
+        scaleCurve: Curves.easeOutCirc,
+        bubbleCurve: Curves.easeInOutSine,
+        items: <CustomNavigationBarItem>[
+          CustomNavigationBarItem(
+            icon: const Icon(Icons.home_rounded),
+          ),
+          CustomNavigationBarItem(
+            icon: const Icon(Icons.description_rounded),
+          ),
+          CustomNavigationBarItem(
+            icon: const Icon(Icons.sports_basketball_rounded),
+          ),
+          CustomNavigationBarItem(
+            icon: const Icon(Icons.settings_rounded),
+          ),
+        ],
+        currentIndex: selectedIndex,
+        onTap: ((value) => setState(() {
+              selectedIndex = value;
+            })),
       ),
     );
 

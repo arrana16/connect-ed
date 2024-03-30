@@ -22,6 +22,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<ScheduleClass>? _data;
   Future<List<Game>>? _games;
   Future<List<Assessment>>? _assessments;
+  late Future<String> _scheduleData;
+
+  Color? firstGradient;
+  Color? secondGradient;
   @override
   void initState() {
     super.initState();
@@ -34,15 +38,28 @@ class _HomeScreenState extends State<HomeScreen> {
     AssignmentGetter assignmentGetter = AssignmentGetter(
         remoteSource: RemoteSource(MySharedPreferences()),
         mySharedPreferences: MySharedPreferences());
-    _data = scheduleGetter.getNextClass();
+    _data = fetchNextClass();
+    _scheduleData = scheduleGetter.getScheduleData();
     _assessments = assignmentGetter.getData();
     _games = sportsCacheHandler.getGames();
   }
 
+  Future<ScheduleClass> fetchNextClass() async {
+    ScheduleGetter scheduleGetter = ScheduleGetter(
+        remoteSource: RemoteSource(MySharedPreferences()),
+        mySharedPreferences: MySharedPreferences());
+
+    ScheduleClass nextClass = await scheduleGetter.getNextClass();
+    setState(() {
+      firstGradient = nextClass.firstGradient;
+      secondGradient = nextClass.secondGradient;
+    });
+
+    return nextClass;
+  }
+
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-
     var brightness = MediaQuery.of(context).platformBrightness;
 
     bool isDarkMode = brightness == Brightness.dark;
@@ -57,201 +74,151 @@ class _HomeScreenState extends State<HomeScreen> {
           body: CustomScrollView(
             slivers: [
               SliverAppBar(
-                backgroundColor: bgColor,
-                expandedHeight: 0,
-                bottom: const PreferredSize(
-                  // Add this code
-                  preferredSize: Size.fromHeight(140), // Add this code
-                  child: Text(''), // Add this code
-                ),
-                flexibleSpace: FutureBuilder(
-                  future: _data,
-                  builder: ((context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Container(
-                        height: 250,
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
+                  backgroundColor: bgColor,
+                  expandedHeight: 0,
+                  bottom: const PreferredSize(
+                    // Add this code
+                    preferredSize: Size.fromHeight(140), // Add this code
+                    child: Text(''), // Add this code
+                  ),
+                  flexibleSpace: Container(
+                      height: 250,
+                      decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.only(
                               bottomRight: Radius.circular(20),
                               bottomLeft: Radius.circular(20)),
-                          color: Colors.black,
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 15, vertical: 20),
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: screenWidth * 0.55,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SizedBox(
-                                        height: MediaQuery.of(context)
-                                                .viewPadding
-                                                .top +
-                                            5),
-                                    IconButton(
-                                        onPressed: () {
-                                          Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const Schedule(),
-                                            ),
-                                          );
-                                        },
-                                        icon: const Icon(
-                                          Icons.schedule,
-                                          size: 24,
-                                          color: Colors.white,
-                                        ),
-                                        padding: EdgeInsets.zero,
-                                        constraints: const BoxConstraints()),
-                                    const Spacer(),
-                                    const Text("Next Up",
-                                        textAlign: TextAlign.left,
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w400,
-                                            fontFamily: "Montserrat",
-                                            color: Colors.white)),
-                                    const SizedBox(
-                                      height: 10,
+                          gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: [
+                                firstGradient ?? Colors.black,
+                                secondGradient ?? Colors.black,
+                              ])),
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                            bottom: 20,
+                            right: 15,
+                            left: 15,
+                            top: (MediaQuery.of(context).viewPadding.top + 5)),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            FutureBuilder(
+                              future: _scheduleData,
+                              builder: (context, snapshot) {
+                                if (snapshot.hasData) {
+                                  return IconButton(
+                                    icon: const Icon(
+                                      Icons.schedule,
+                                      color: Colors.white,
                                     ),
-                                    const Text(
-                                      "Loading...",
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 30,
-                                          fontFamily: "Montserrat",
-                                          fontWeight: FontWeight.w600),
-                                      overflow: TextOverflow.ellipsis,
-                                      maxLines: 1,
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                    } else if (snapshot.hasError) {
-                      return Container(
-                          height: 250,
-                          decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                  bottomRight: Radius.circular(20),
-                                  bottomLeft: Radius.circular(20)),
-                              gradient: LinearGradient(
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                  colors: [Colors.black, Colors.black])),
-                          child: const Text(
-                            "An error occured",
-                            style: TextStyle(color: Colors.white),
-                          ));
-                    } else {
-                      final ScheduleClass schedule =
-                          snapshot.data as ScheduleClass;
-                      return Container(
-                        height: 250,
-                        decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.only(
-                                bottomRight: Radius.circular(20),
-                                bottomLeft: Radius.circular(20)),
-                            gradient: LinearGradient(
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                                colors: [
-                                  schedule.firstGradient,
-                                  schedule.secondGradient
-                                ])),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 15, vertical: 20),
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: screenWidth * 0.55,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SizedBox(
-                                        height: MediaQuery.of(context)
-                                                .viewPadding
-                                                .top +
-                                            5),
-                                    IconButton(
-                                        onPressed: () {
-                                          Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const Schedule(),
-                                            ),
-                                          );
-                                        },
-                                        icon: const Icon(
-                                          Icons.schedule,
-                                          size: 24,
-                                          color: Colors.white,
+                                    padding: EdgeInsets.zero,
+                                    constraints: const BoxConstraints(),
+                                    onPressed: () {
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (context) => Schedule(
+                                            data: snapshot.data as String,
+                                          ),
                                         ),
-                                        padding: EdgeInsets.zero,
-                                        constraints: const BoxConstraints()),
-                                    const Spacer(),
-                                    const Text("Next Up",
-                                        textAlign: TextAlign.left,
-                                        style: TextStyle(
+                                      );
+                                    },
+                                  );
+                                } else {
+                                  return Icon(
+                                    Icons.schedule,
+                                    color: Colors.grey[500],
+                                  );
+                                }
+                              },
+                            ),
+                            const Spacer(),
+                            const Text("Next Up",
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w400,
+                                    fontFamily: "Montserrat",
+                                    color: Colors.white)),
+                            FutureBuilder(
+                              future: _data,
+                              builder: (context, snapshot) {
+                                if (snapshot.hasData) {
+                                  final ScheduleClass schedule =
+                                      snapshot.data as ScheduleClass;
+                                  return Row(
+                                    children: [
+                                      Text(
+                                        schedule.className,
+                                        style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 30,
+                                            fontWeight: FontWeight.w700,
+                                            fontFamily: "Montserrat"),
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 1,
+                                      ),
+                                      const Spacer(),
+                                      Text(
+                                        "${schedule.startTime} - ${schedule.endTime}",
+                                        style: const TextStyle(
+                                            color: Colors.white,
                                             fontSize: 20,
-                                            fontWeight: FontWeight.w400,
-                                            fontFamily: "Montserrat",
-                                            color: Colors.white)),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    Text(
-                                      schedule.className,
-                                      style: const TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 30,
-                                          fontWeight: FontWeight.w700,
-                                          fontFamily: "Montserrat"),
-                                      overflow: TextOverflow.ellipsis,
-                                      maxLines: 1,
-                                    )
-                                  ],
-                                ),
-                              ),
-                              const Spacer(),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  SizedBox(
-                                      height: MediaQuery.of(context)
-                                              .viewPadding
-                                              .top +
-                                          5),
-                                  const Spacer(),
-                                  Text(
-                                      "${schedule.startTime} - ${schedule.endTime}",
-                                      textAlign: TextAlign.right,
-                                      style: const TextStyle(
-                                          color:
-                                              Color.fromRGBO(217, 217, 217, 1),
-                                          fontSize: 20))
-                                ],
-                              )
-                            ],
-                          ),
+                                            fontFamily: "Montserrat"),
+                                      ),
+                                    ],
+                                  );
+                                } else if (snapshot.connectionState ==
+                                    ConnectionState.waiting) {
+                                  return const Row(
+                                    children: [
+                                      Text("Loading...",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 30,
+                                              fontWeight: FontWeight.w700,
+                                              fontFamily: "Montserrat"),
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 1),
+                                      Spacer(),
+                                      Text(
+                                        "--:-- - --:--",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 20,
+                                            fontFamily: "Montserrat"),
+                                      ),
+                                    ],
+                                  );
+                                } else {
+                                  return const Row(
+                                    children: [
+                                      Text("Couldn't Load",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 30,
+                                              fontWeight: FontWeight.w700,
+                                              fontFamily: "Montserrat"),
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 1),
+                                      Spacer(),
+                                      Text("--:-- - --:--",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20,
+                                              fontFamily: "Montserrat")),
+                                    ],
+                                  );
+                                }
+                              },
+                            )
+                          ],
                         ),
-                      );
-                    }
-                  }),
-                ),
-              ),
+                      ))),
               const SliverPadding(padding: EdgeInsets.only(top: 20)),
               SliverToBoxAdapter(
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 5.0),
+                  padding: const EdgeInsets.only(left: 15.0),
                   child: Text(
                     "Recent Games",
                     style: TextStyle(
@@ -293,7 +260,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                     return SliverToBoxAdapter(
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                        padding: const EdgeInsets.only(left: 15.0),
                         child: SizedBox(
                           height: 150.0,
                           child: ListView.builder(
@@ -325,7 +292,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const SliverPadding(padding: EdgeInsets.only(top: 40)),
               SliverToBoxAdapter(
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 5.0),
+                  padding: const EdgeInsets.only(left: 15.0),
                   child: Text(
                     "Upcoming Assessments",
                     style: TextStyle(
@@ -337,7 +304,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               SliverPadding(
-                padding: const EdgeInsets.only(top: 10),
+                padding: const EdgeInsets.only(left: 5),
                 sliver: FutureBuilder(
                   future: _assessments,
                   builder: (context, snapshot) {

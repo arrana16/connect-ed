@@ -61,7 +61,6 @@ class SportsCacheHandler {
     final parsed = (jsonDecode(response.body)["data"] as List)
         .cast<Map<String, dynamic>>();
     final sports = parsed.map<Sport>((json) => Sport.fromJson(json)).toList();
-    print(sports);
     return sports;
   }
 

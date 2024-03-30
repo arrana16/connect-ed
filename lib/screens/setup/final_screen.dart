@@ -8,7 +8,8 @@ class FinalSetupScreen extends StatelessWidget {
     var brightness = MediaQuery.of(context).platformBrightness;
 
     var isDarkMode = brightness == Brightness.dark;
-    var bgColor = isDarkMode ? Color.fromARGB(255, 11, 11, 11) : Colors.white;
+    var bgColor =
+        isDarkMode ? const Color.fromARGB(255, 11, 11, 11) : Colors.white;
     var textColor = isDarkMode ? Colors.white : Colors.black;
 
     return MaterialApp(
@@ -17,7 +18,7 @@ class FinalSetupScreen extends StatelessWidget {
           body: Center(
               child: Column(
             children: [
-              Spacer(),
+              const Spacer(),
               Padding(
                 padding: const EdgeInsets.only(bottom: 25.0),
                 child: Text(
@@ -33,7 +34,7 @@ class FinalSetupScreen extends StatelessWidget {
                 onPressed: () async {
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
-                      builder: (context) => ACapp(),
+                      builder: (context) => const ACapp(),
                     ),
                   );
                 },
@@ -50,7 +51,7 @@ class FinalSetupScreen extends StatelessWidget {
                       fontFamily: "Montserrat"),
                 ),
               ),
-              Spacer()
+              const Spacer()
             ],
           ))),
     );

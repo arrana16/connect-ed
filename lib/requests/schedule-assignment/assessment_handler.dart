@@ -46,8 +46,6 @@ class AssignmentGetter {
               0, eventSummary.length - assignmentName.length));
           var assignmentDate = DateTime.parse(
               "${eventDate['dt'].substring(0, 4)}-${eventDate['dt'].substring(4, 6)}-${eventDate['dt'].substring(6, 8)}");
-          print(
-              '${eventDate['dt']}, $assignmentName,  $eventDescription, $courseName');
           assignments.add(Assessment(
               className: courseName,
               date: assignmentDate,
@@ -64,6 +62,7 @@ class AssignmentGetter {
 
   String getCourseName(String name) {
     bool isAP = false;
+    // ignore: non_constant_identifier_names
     int APindex = 0;
     String courseName = "";
     if (name.length < 2) {

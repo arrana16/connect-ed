@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:applebycollegeapp/requests/schedule-assignment/schedule_cache.dart';
 import 'package:icalendar_parser/icalendar_parser.dart';
 import 'package:applebycollegeapp/classes/scheduleClass.dart';
@@ -37,7 +39,22 @@ class ScheduleGetter {
     }
   }
 
-  Future<List<ScheduleClass>> parseData(String data, DateTime date) async {
+  Future<String> getScheduleData() async {
+    try {
+      final String? iCalenderData =
+          await mySharedPreferences.getDataIfNotExpired();
+      if (iCalenderData != null) {
+        return iCalenderData;
+      } else {
+        await remoteSource.fetchData();
+        return getScheduleData();
+      }
+    } catch (error) {
+      throw Exception(error);
+    }
+  }
+
+  List<ScheduleClass> parseData(String data, DateTime date) {
     try {
       List<ScheduleClass> blocks = [];
       final iCalendar = ICalendar.fromLines(data.split("\n"));
@@ -69,12 +86,11 @@ class ScheduleGetter {
               className: "No Classes Today",
               startTime: "--:--",
               endTime: "--:--",
-              firstGradient: Color.fromARGB(255, 9, 164, 207),
-              secondGradient: Color.fromARGB(255, 62, 205, 5)))
+              firstGradient: const Color.fromARGB(255, 9, 164, 207),
+              secondGradient: const Color.fromARGB(255, 62, 205, 5)))
           : null;
       return blocks;
     } catch (err) {
-      print(err);
       return [
         ScheduleClass(
             className: "Couldn't Load",
@@ -156,13 +172,12 @@ class ScheduleGetter {
             className: "No Class",
             startTime: "--:--",
             endTime: "--:--",
-            firstGradient: Color.fromARGB(255, 9, 164, 207),
-            secondGradient: Color.fromARGB(255, 62, 205, 5));
+            firstGradient: const Color.fromARGB(255, 9, 164, 207),
+            secondGradient: const Color.fromARGB(255, 62, 205, 5));
       } else {
         return blocks[index];
       }
     } catch (err) {
-      print(err);
       return ScheduleClass(
           className: "Couldn't Load",
           startTime: "--:--",

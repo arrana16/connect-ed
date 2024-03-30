@@ -36,6 +36,7 @@ class Game {
   }
 
   factory Game.fromJson(Map<String, dynamic> json) {
+    // ignore: non_constant_identifier_names
     DateTime game_date;
     String homeScore = json['home_score'] ?? '';
     homeScore = homeScore.split("(")[0];

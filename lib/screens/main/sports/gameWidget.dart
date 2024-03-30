@@ -346,7 +346,7 @@ class _ExpandedGameWidgetState extends State<ExpandedGameWidget> {
                         ),
                       ),
                     ),
-                    const SliverPadding(padding: EdgeInsets.only(top: 30)),
+                    const SliverPadding(padding: EdgeInsets.only(top: 40)),
                     SliverToBoxAdapter(
                         child: Column(
                       children: [
@@ -362,6 +362,7 @@ class _ExpandedGameWidgetState extends State<ExpandedGameWidget> {
                             const Spacer()
                           ],
                         ),
+                        const SizedBox(height: 10),
                         FutureBuilder(
                           future: _standings,
                           builder: (context, snapshot) {

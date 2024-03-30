@@ -1,5 +1,7 @@
 //write the basic boilerplate for a stateless widget
 
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:applebycollegeapp/requests/schedule-assignment/assessment_handler.dart';
 import 'package:applebycollegeapp/requests/schedule-assignment/schedule_cache.dart';
@@ -17,6 +19,7 @@ class AssessmentsPage extends StatefulWidget {
 class _AssessmentsPageState extends State<AssessmentsPage> {
   Future<List<Assessment>>? _data;
 
+  @override
   void initState() {
     super.initState();
 
@@ -27,10 +30,12 @@ class _AssessmentsPageState extends State<AssessmentsPage> {
     _data = assignmentGetter.getData();
   }
 
+  @override
   Widget build(BuildContext context) {
     var brightness = MediaQuery.of(context).platformBrightness;
     bool isDarkMode = brightness == Brightness.dark;
-    var bgColor = isDarkMode ? Color.fromARGB(255, 11, 11, 11) : Colors.white;
+    var bgColor =
+        isDarkMode ? const Color.fromARGB(255, 11, 11, 11) : Colors.white;
     var textColor = isDarkMode ? Colors.white : Colors.black;
 
     return MaterialApp(
@@ -45,7 +50,7 @@ class _AssessmentsPageState extends State<AssessmentsPage> {
               slivers: [
                 SliverAppBar(
                   leading: null,
-                  actions: [],
+                  actions: const [],
                   toolbarHeight: 70,
                   backgroundColor: bgColor,
                   automaticallyImplyLeading: false,
@@ -53,7 +58,6 @@ class _AssessmentsPageState extends State<AssessmentsPage> {
                   expandedHeight: 0.0,
                   leadingWidth: 8,
                   titleSpacing: 0,
-                  floating: true,
                   flexibleSpace: FlexibleSpaceBar(
                     titlePadding: EdgeInsets.zero,
                     title: Padding(
@@ -148,7 +152,7 @@ class _AssessmentsPageState extends State<AssessmentsPage> {
                   future: _data,
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return SliverToBoxAdapter(
+                      return const SliverToBoxAdapter(
                         child: Center(
                           child: CircularProgressIndicator(),
                         ),

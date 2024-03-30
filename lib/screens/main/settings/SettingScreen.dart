@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:applebycollegeapp/screens/main/settings/beta_testing.dart';
 import 'package:applebycollegeapp/screens/main/settings/bug_screen.dart';
 import 'package:applebycollegeapp/screens/main/settings/link_screen.dart';
@@ -68,7 +70,7 @@ class _SettingScreenState extends State<SettingScreen> {
                         borderRadius: BorderRadius.circular(10)),
                     height: 50,
                     child: Padding(
-                      padding: EdgeInsets.only(left: 10.0, right: 10),
+                      padding: const EdgeInsets.only(left: 10.0, right: 10),
                       child: Row(
                         children: [
                           Text(
@@ -80,7 +82,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                 fontFamily: "Montserrat",
                                 fontWeight: FontWeight.w600),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Icon(
                             Icons.arrow_forward_ios,
                             color: textColor,
@@ -91,7 +93,7 @@ class _SettingScreenState extends State<SettingScreen> {
                     )),
               ),
             ),
-            SliverPadding(padding: EdgeInsets.only(top: 20)),
+            const SliverPadding(padding: EdgeInsets.only(top: 20)),
             SliverToBoxAdapter(
               child: GestureDetector(
                 onTap: (() => Navigator.of(context).push(
@@ -106,7 +108,7 @@ class _SettingScreenState extends State<SettingScreen> {
                         borderRadius: BorderRadius.circular(10)),
                     height: 50,
                     child: Padding(
-                      padding: EdgeInsets.only(left: 10.0, right: 10),
+                      padding: const EdgeInsets.only(left: 10.0, right: 10),
                       child: Row(
                         children: [
                           Text(
@@ -118,7 +120,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                 fontFamily: "Montserrat",
                                 fontWeight: FontWeight.w600),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Icon(
                             Icons.arrow_forward_ios,
                             color: textColor,
@@ -144,7 +146,7 @@ class _SettingScreenState extends State<SettingScreen> {
                         borderRadius: BorderRadius.circular(10)),
                     height: 50,
                     child: Padding(
-                      padding: EdgeInsets.only(left: 10.0, right: 10),
+                      padding: const EdgeInsets.only(left: 10.0, right: 10),
                       child: Row(
                         children: [
                           Text(
@@ -156,7 +158,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                 fontFamily: "Montserrat",
                                 fontWeight: FontWeight.w600),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Icon(
                             Icons.arrow_forward_ios,
                             color: textColor,
