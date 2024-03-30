@@ -29,6 +29,7 @@ class _BugScreenState extends State<BugScreen> {
                 toolbarHeight: 120,
                 backgroundColor: bgColor,
                 floating: false,
+                automaticallyImplyLeading: false,
                 pinned: true,
                 flexibleSpace: Padding(
                   padding: const EdgeInsets.only(top: 10),

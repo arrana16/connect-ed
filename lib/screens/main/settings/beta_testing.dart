@@ -30,6 +30,7 @@ class _BetaScreenState extends State<BetaScreen> {
                 backgroundColor: bgColor,
                 floating: false,
                 pinned: true,
+                automaticallyImplyLeading: false,
                 flexibleSpace: Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: Row(
