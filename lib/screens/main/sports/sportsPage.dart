@@ -46,7 +46,7 @@ class _SportsPageState extends State<SportsPage> {
         color: bgColor,
         child: SafeArea(
             child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
+          padding: const EdgeInsets.only(left: 15),
           child: CustomScrollView(
             slivers: [
               SliverAppBar(
@@ -120,10 +120,13 @@ class _SportsPageState extends State<SportsPage> {
                                               title: "Results")),
                                     );
                                   },
-                                  child: const Text("View All",
-                                      style: TextStyle(
-                                        fontFamily: "Montserrat",
-                                      )));
+                                  child: const Padding(
+                                    padding: EdgeInsets.only(right: 15.0),
+                                    child: Text("View All",
+                                        style: TextStyle(
+                                          fontFamily: "Montserrat",
+                                        )),
+                                  ));
                             }
                           }),
                     ],
@@ -227,10 +230,13 @@ class _SportsPageState extends State<SportsPage> {
                                               title: "Upcoming")),
                                     );
                                   },
-                                  child: const Text("View All",
-                                      style: TextStyle(
-                                        fontFamily: "Montserrat",
-                                      )));
+                                  child: const Padding(
+                                    padding: EdgeInsets.only(right: 15.0),
+                                    child: Text("View All",
+                                        style: TextStyle(
+                                          fontFamily: "Montserrat",
+                                        )),
+                                  ));
                             }
                           }),
                     ],
@@ -296,84 +302,89 @@ class _SportsPageState extends State<SportsPage> {
               ),
               const SliverPadding(padding: EdgeInsets.all(10)),
               SliverToBoxAdapter(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Text("Standings",
-                            style: TextStyle(
-                                color: textColor,
-                                fontFamily: "Montserrat",
-                                fontSize: 22,
-                                fontWeight: FontWeight.w600)),
-                        const Spacer(),
-                        FutureBuilder(
-                          future: _sports,
-                          builder: (context, snapshot) {
-                            if (snapshot.hasData) {
-                              List<Sport> sports = snapshot.data as List<Sport>;
-                              return DropdownButton<Sport>(
-                                value: selectedSport ?? sports[0],
-                                icon: const Icon(Icons.arrow_drop_down),
-                                iconSize: 20,
-                                elevation: 18,
-                                dropdownColor: bgColor,
-                                style: TextStyle(
-                                    color: textColor, fontFamily: "Montserrat"),
-                                underline: Container(
-                                  height: 1,
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 15.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Text("Standings",
+                              style: TextStyle(
                                   color: textColor,
-                                ),
-                                onChanged: (Sport? newValue) {
-                                  setState(() {
-                                    selectedSport = newValue!;
-                                  });
-                                },
-                                items: sports.map<DropdownMenuItem<Sport>>(
-                                    (Sport value) {
-                                  return DropdownMenuItem<Sport>(
-                                    value: value,
-                                    child: Text(value.name,
-                                        style: TextStyle(
-                                            color: textColor,
-                                            fontFamily: "Montserrat")),
-                                  );
-                                }).toList(),
-                              );
-                            } else if (snapshot.hasError) {
-                              return const Text("");
-                            } else {
-                              return const Text("");
-                            }
-                          },
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    FutureBuilder(
-                      future: _standings,
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return const Center(
-                              child: CircularProgressIndicator());
-                        } else if (snapshot.hasError) {
-                          return Text("${snapshot.error}");
-                        } else {
-                          final List<Standing> standings =
-                              snapshot.data as List<Standing>;
-                          return StandingsWidget(
-                            schoolAbbr: " ",
-                            standings: standings,
-                            sportID: selectedSport?.id ?? 1,
-                          );
-                        }
-                      },
-                    )
-                  ],
+                                  fontFamily: "Montserrat",
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w600)),
+                          const Spacer(),
+                          FutureBuilder(
+                            future: _sports,
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                List<Sport> sports =
+                                    snapshot.data as List<Sport>;
+                                return DropdownButton<Sport>(
+                                  value: selectedSport ?? sports[0],
+                                  icon: const Icon(Icons.arrow_drop_down),
+                                  iconSize: 20,
+                                  elevation: 18,
+                                  dropdownColor: bgColor,
+                                  style: TextStyle(
+                                      color: textColor,
+                                      fontFamily: "Montserrat"),
+                                  underline: Container(
+                                    height: 1,
+                                    color: textColor,
+                                  ),
+                                  onChanged: (Sport? newValue) {
+                                    setState(() {
+                                      selectedSport = newValue!;
+                                    });
+                                  },
+                                  items: sports.map<DropdownMenuItem<Sport>>(
+                                      (Sport value) {
+                                    return DropdownMenuItem<Sport>(
+                                      value: value,
+                                      child: Text(value.name,
+                                          style: TextStyle(
+                                              color: textColor,
+                                              fontFamily: "Montserrat")),
+                                    );
+                                  }).toList(),
+                                );
+                              } else if (snapshot.hasError) {
+                                return const Text("");
+                              } else {
+                                return const Text("");
+                              }
+                            },
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      FutureBuilder(
+                        future: _standings,
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return const Center(
+                                child: CircularProgressIndicator());
+                          } else if (snapshot.hasError) {
+                            return Text("${snapshot.error}");
+                          } else {
+                            final List<Standing> standings =
+                                snapshot.data as List<Standing>;
+                            return StandingsWidget(
+                              schoolAbbr: " ",
+                              standings: standings,
+                              sportID: selectedSport?.id ?? 1,
+                            );
+                          }
+                        },
+                      )
+                    ],
+                  ),
                 ),
               ),
             ],

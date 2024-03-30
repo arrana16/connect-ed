@@ -18,8 +18,9 @@ void main() async {
   tz.initializeTimeZones();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
       (value) => runApp(MaterialApp(
+          debugShowCheckedModeBanner: false,
           home: setup == "complete" ? const ACapp() : const WelcomeScreen())));
-  // MaterialApp(home: WelcomeScreen())));
+  // home: WelcomeScreen())));
 }
 
 class ACapp extends StatefulWidget {
