@@ -77,7 +77,7 @@ class _AssessmentsPageState extends State<AssessmentsPage> {
                   ),
                 ),
                 SliverPadding(
-                  padding: const EdgeInsets.only(top: 10),
+                  padding: const EdgeInsets.only(top: 20),
                   sliver: FutureBuilder(
                     future: _data,
                     builder: (context, snapshot) {
