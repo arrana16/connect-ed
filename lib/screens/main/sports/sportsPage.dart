@@ -322,34 +322,36 @@ class _SportsPageState extends State<SportsPage> {
                               if (snapshot.hasData) {
                                 List<Sport> sports =
                                     snapshot.data as List<Sport>;
-                                return DropdownButton<Sport>(
-                                  value: selectedSport ?? sports[0],
-                                  icon: const Icon(Icons.arrow_drop_down),
-                                  iconSize: 20,
-                                  elevation: 18,
-                                  dropdownColor: bgColor,
-                                  style: TextStyle(
+                                return Container(
+                                  child: DropdownButton<Sport>(
+                                    value: selectedSport ?? sports[0],
+                                    icon: const Icon(Icons.arrow_drop_down),
+                                    iconSize: 20,
+                                    elevation: 18,
+                                    dropdownColor: bgColor,
+                                    style: TextStyle(
+                                        color: textColor,
+                                        fontFamily: "Montserrat"),
+                                    underline: Container(
+                                      height: 1,
                                       color: textColor,
-                                      fontFamily: "Montserrat"),
-                                  underline: Container(
-                                    height: 1,
-                                    color: textColor,
+                                    ),
+                                    onChanged: (Sport? newValue) {
+                                      setState(() {
+                                        selectedSport = newValue!;
+                                      });
+                                    },
+                                    items: sports.map<DropdownMenuItem<Sport>>(
+                                        (Sport value) {
+                                      return DropdownMenuItem<Sport>(
+                                        value: value,
+                                        child: Text(value.name,
+                                            style: TextStyle(
+                                                color: textColor,
+                                                fontFamily: "Montserrat")),
+                                      );
+                                    }).toList(),
                                   ),
-                                  onChanged: (Sport? newValue) {
-                                    setState(() {
-                                      selectedSport = newValue!;
-                                    });
-                                  },
-                                  items: sports.map<DropdownMenuItem<Sport>>(
-                                      (Sport value) {
-                                    return DropdownMenuItem<Sport>(
-                                      value: value,
-                                      child: Text(value.name,
-                                          style: TextStyle(
-                                              color: textColor,
-                                              fontFamily: "Montserrat")),
-                                    );
-                                  }).toList(),
                                 );
                               } else if (snapshot.hasError) {
                                 return const Text("");

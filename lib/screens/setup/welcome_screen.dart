@@ -40,7 +40,7 @@ class WelcomeScreen extends StatelessWidget {
               const Spacer(),
               Padding(
                 padding: const EdgeInsets.only(
-                  bottom: 40,
+                  bottom: 30,
                 ),
                 child: Text(
                   "Hello there!",
@@ -49,7 +49,7 @@ class WelcomeScreen extends StatelessWidget {
                       color: textColor,
                       fontSize: 40,
                       fontFamily: "Montserrat",
-                      fontWeight: FontWeight.w700),
+                      fontWeight: FontWeight.w600),
                 ),
               ),
               Text(
@@ -70,7 +70,7 @@ class WelcomeScreen extends StatelessWidget {
                       color: textColor,
                       fontSize: 15,
                       fontFamily: "Montserrat",
-                      fontWeight: FontWeight.w300),
+                      fontWeight: FontWeight.w400),
                 ),
               ),
               const Spacer(),

@@ -105,6 +105,7 @@ class _AssessmentsPageState extends State<AssessmentsPage> {
                               SliverChildBuilderDelegate((context, index) {
                             if (index == 0) {
                               return Container(
+                                  alignment: Alignment.center,
                                   decoration: BoxDecoration(
                                       gradient: const LinearGradient(
                                           begin: Alignment.topLeft,
@@ -128,20 +129,30 @@ class _AssessmentsPageState extends State<AssessmentsPage> {
                             }
                             int realIndex = index - 1;
                             return ListTile(
-                              title: Text(
-                                currentAssessments[realIndex].title,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    color: textColor),
-                              ),
-                              subtitle: Text(
-                                  currentAssessments[realIndex].className,
-                                  style: TextStyle(color: textColor)),
-                              trailing: Text(
-                                  DateFormat('EE MMM dd').format(
-                                      currentAssessments[realIndex].date),
-                                  style: TextStyle(color: textColor)),
-                            );
+                                title: Text(
+                                  currentAssessments[realIndex].title,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontFamily: "Montserrat",
+                                      fontSize: 15,
+                                      color: textColor),
+                                ),
+                                subtitle: Text(
+                                    currentAssessments[realIndex].className,
+                                    style: TextStyle(
+                                        color: textColor,
+                                        fontFamily: "Montserrat",
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400)),
+                                trailing: Text(
+                                    DateFormat('EE MMM dd').format(
+                                        currentAssessments[realIndex].date),
+                                    style: TextStyle(
+                                        color: textColor,
+                                        fontFamily: "Montserrat",
+                                        fontWeight: FontWeight.w400)),
+                                contentPadding:
+                                    const EdgeInsets.only(bottom: 10));
                           }, childCount: currentAssessments.length + 1),
                         );
                       }
@@ -174,6 +185,7 @@ class _AssessmentsPageState extends State<AssessmentsPage> {
                         delegate: SliverChildBuilderDelegate((context, index) {
                           if (index == 0) {
                             return Container(
+                                alignment: Alignment.center,
                                 decoration: BoxDecoration(
                                     gradient: const LinearGradient(
                                         begin: Alignment.topLeft,
@@ -201,15 +213,25 @@ class _AssessmentsPageState extends State<AssessmentsPage> {
                               currentAssessments[realIndex].title,
                               style: TextStyle(
                                   fontWeight: FontWeight.w500,
+                                  fontFamily: "Montserrat",
+                                  fontSize: 15,
                                   color: textColor),
                             ),
                             subtitle: Text(
                                 currentAssessments[realIndex].className,
-                                style: TextStyle(color: textColor)),
+                                style: TextStyle(
+                                    color: textColor,
+                                    fontFamily: "Montserrat",
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w400)),
                             trailing: Text(
                                 DateFormat('EE MMM dd')
                                     .format(currentAssessments[realIndex].date),
-                                style: TextStyle(color: textColor)),
+                                style: TextStyle(
+                                    color: textColor,
+                                    fontFamily: "Montserrat",
+                                    fontWeight: FontWeight.w400)),
+                            contentPadding: const EdgeInsets.only(bottom: 10),
                           );
                         }, childCount: currentAssessments.length + 1),
                       );

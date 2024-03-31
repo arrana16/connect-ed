@@ -86,6 +86,7 @@ class _ScheduleState extends State<Schedule> {
                                     return Theme(
                                         data: ThemeData(
                                             fontFamily: "Montserrat",
+                                            
                                             colorScheme: ColorScheme.light(
                                                 primary: textColor,
                                                 onPrimary: bgColor,
