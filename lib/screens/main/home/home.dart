@@ -244,8 +244,20 @@ class _HomeScreenState extends State<HomeScreen> {
                   } else if (snapshot.hasError) {
                     return SliverToBoxAdapter(
                       child: Center(
-                        child: Text('Error: ${snapshot.error}',
-                            style: TextStyle(color: textColor)),
+                        child: Row(
+                          children: [
+                            Text('Couldn\'t load standings',
+                                style: TextStyle(
+                                    color: textColor,
+                                    fontFamily: "Montserrat",
+                                    fontSize: 20)),
+                            Icon(
+                              Icons.sentiment_dissatisfied,
+                              color: textColor,
+                              size: 30,
+                            )
+                          ],
+                        ),
                       ),
                     );
                   } else {
