@@ -16,10 +16,11 @@ class ScheduleGetter {
 
   List<List<Color>> gradients = const [
     [Colors.red, Color.fromARGB(255, 255, 148, 33)],
-    [Color.fromARGB(255, 46, 194, 208), Color.fromARGB(255, 212, 54, 244)],
     [Color.fromARGB(255, 3, 190, 41), Color.fromARGB(255, 3, 179, 155)],
-    [Color.fromARGB(255, 169, 14, 235), Colors.red],
-    [Color.fromRGBO(7, 190, 231, 1), Color.fromRGBO(5, 65, 184, 1)]
+    [Color.fromARGB(255, 112, 13, 218), Color.fromARGB(255, 212, 54, 244)],
+    [Color.fromARGB(255, 236, 16, 16), Color.fromARGB(255, 223, 34, 173)],
+    [Color.fromRGBO(5, 65, 184, 1), Color.fromRGBO(7, 190, 231, 1)],
+    [Color.fromARGB(255, 200, 8, 230), Color.fromARGB(255, 244, 54, 63)],
   ];
   // Function to get data from the cache if available, or from the API if not
 

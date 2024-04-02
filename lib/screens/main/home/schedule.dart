@@ -86,7 +86,6 @@ class _ScheduleState extends State<Schedule> {
                                     return Theme(
                                         data: ThemeData(
                                             fontFamily: "Montserrat",
-                                            
                                             colorScheme: ColorScheme.light(
                                                 primary: textColor,
                                                 onPrimary: bgColor,
@@ -160,7 +159,8 @@ class _ScheduleState extends State<Schedule> {
                                           Expanded(
                                             child: Text(
                                               blocks[index].className,
-                                              overflow: TextOverflow.fade,
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 2,
                                               style: const TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 18,

@@ -61,6 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     var brightness = MediaQuery.of(context).platformBrightness;
+    var screenWidth = MediaQuery.of(context).size.width;
 
     bool isDarkMode = brightness == Brightness.dark;
     var bgColor =
@@ -140,6 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     fontWeight: FontWeight.w400,
                                     fontFamily: "Montserrat",
                                     color: Colors.white)),
+                            const SizedBox(height: 5),
                             FutureBuilder(
                               future: _data,
                               builder: (context, snapshot) {
@@ -147,24 +149,52 @@ class _HomeScreenState extends State<HomeScreen> {
                                   final ScheduleClass schedule =
                                       snapshot.data as ScheduleClass;
                                   return Row(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
                                     children: [
-                                      Text(
-                                        schedule.className,
-                                        style: const TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 30,
-                                            fontWeight: FontWeight.w700,
-                                            fontFamily: "Montserrat"),
-                                        overflow: TextOverflow.ellipsis,
-                                        maxLines: 1,
+                                      Flexible(
+                                        flex: 10,
+                                        fit: FlexFit.tight,
+                                        child: Text(
+                                          schedule.className,
+                                          softWrap: true,
+                                          style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 28,
+                                              fontWeight: FontWeight.w700,
+                                              fontFamily: "Montserrat"),
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
                                       ),
                                       const Spacer(),
-                                      Text(
-                                        "${schedule.startTime} - ${schedule.endTime}",
-                                        style: const TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 20,
-                                            fontFamily: "Montserrat"),
+                                      Column(
+                                        children: [
+                                          Text(
+                                            schedule.startTime,
+                                            style: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20,
+                                                fontFamily: "Montserrat"),
+                                          ),
+                                          const Text(
+                                            "|",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w500,
+                                                fontFamily: "Montserrat"),
+                                          ),
+                                          SizedBox(
+                                            height: 2,
+                                          ),
+                                          Text(
+                                            schedule.endTime,
+                                            style: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20,
+                                                fontFamily: "Montserrat"),
+                                          ),
+                                        ],
                                       ),
                                     ],
                                   );
