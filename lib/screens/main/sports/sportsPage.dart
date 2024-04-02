@@ -397,22 +397,20 @@ class _SportsPageState extends State<SportsPage> {
                             return const Center(
                                 child: CircularProgressIndicator());
                           } else if (snapshot.hasError) {
-                            return SliverToBoxAdapter(
-                              child: Center(
-                                child: Row(
-                                  children: [
-                                    Text('Couldn\'t load standings',
-                                        style: TextStyle(
-                                            color: textColor,
-                                            fontFamily: "Montserrat",
-                                            fontSize: 20)),
-                                    Icon(
-                                      Icons.sentiment_dissatisfied,
-                                      color: textColor,
-                                      size: 30,
-                                    )
-                                  ],
-                                ),
+                            return Center(
+                              child: Row(
+                                children: [
+                                  Text('Couldn\'t load standings',
+                                      style: TextStyle(
+                                          color: textColor,
+                                          fontFamily: "Montserrat",
+                                          fontSize: 20)),
+                                  Icon(
+                                    Icons.sentiment_dissatisfied,
+                                    color: textColor,
+                                    size: 30,
+                                  )
+                                ],
                               ),
                             );
                           } else {

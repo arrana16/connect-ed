@@ -150,18 +150,10 @@ class ScheduleGetter {
       int index = -1;
       for (int i = 0; i < blocks.length; i++) {
         if (blocks[i].startTime != "--:--") {
-          if (int.parse(blocks[i]
-                      .startTime
-                      .substring(0, blocks[i].startTime.length - 3)) >
-                  hour ||
-              (int.parse(blocks[i]
-                          .startTime
-                          .substring(0, blocks[i].startTime.length - 3)) ==
-                      hour &&
-                  int.parse(blocks[i].startTime.substring(
-                          blocks[i].startTime.length - 3,
-                          blocks[i].startTime.length)) >
-                      minute)) {
+          print(blocks[i].startTime.split(":")[0]);
+          if (int.parse(blocks[i].startTime.split(":")[0]) > hour ||
+              (int.parse(blocks[i].startTime.split(":")[0]) == hour &&
+                  int.parse(blocks[i].startTime.split(":")[1]) > minute)) {
             index = i;
             break;
           }
@@ -178,6 +170,7 @@ class ScheduleGetter {
         return blocks[index];
       }
     } catch (err) {
+      print(err);
       return ScheduleClass(
           className: "Couldn't Load",
           startTime: "--:--",

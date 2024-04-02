@@ -243,20 +243,23 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   } else if (snapshot.hasError) {
                     return SliverToBoxAdapter(
-                      child: Center(
-                        child: Row(
-                          children: [
-                            Text('Couldn\'t load standings',
-                                style: TextStyle(
-                                    color: textColor,
-                                    fontFamily: "Montserrat",
-                                    fontSize: 20)),
-                            Icon(
-                              Icons.sentiment_dissatisfied,
-                              color: textColor,
-                              size: 30,
-                            )
-                          ],
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 15.0),
+                        child: Center(
+                          child: Row(
+                            children: [
+                              Text('Couldn\'t load games',
+                                  style: TextStyle(
+                                      color: textColor,
+                                      fontFamily: "Montserrat",
+                                      fontSize: 20)),
+                              Icon(
+                                Icons.sentiment_dissatisfied,
+                                color: textColor,
+                                size: 30,
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     );
