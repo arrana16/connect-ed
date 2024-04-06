@@ -61,7 +61,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     var brightness = MediaQuery.of(context).platformBrightness;
-    var screenWidth = MediaQuery.of(context).size.width;
 
     bool isDarkMode = brightness == Brightness.dark;
     var bgColor =
@@ -112,6 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     icon: const Icon(
                                       Icons.schedule,
                                       color: Colors.white,
+                                      size: 30,
                                     ),
                                     padding: EdgeInsets.zero,
                                     constraints: const BoxConstraints(),
@@ -134,14 +134,6 @@ class _HomeScreenState extends State<HomeScreen> {
                               },
                             ),
                             const Spacer(),
-                            const Text("Next Up",
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w400,
-                                    fontFamily: "Montserrat",
-                                    color: Colors.white)),
-                            const SizedBox(height: 5),
                             FutureBuilder(
                               future: _data,
                               builder: (context, snapshot) {
@@ -154,16 +146,34 @@ class _HomeScreenState extends State<HomeScreen> {
                                       Flexible(
                                         flex: 10,
                                         fit: FlexFit.tight,
-                                        child: Text(
-                                          schedule.className,
-                                          softWrap: true,
-                                          style: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 28,
-                                              fontWeight: FontWeight.w700,
-                                              fontFamily: "Montserrat"),
-                                          maxLines: 2,
-                                          overflow: TextOverflow.ellipsis,
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            const Text(
+                                              "Next Class",
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 20,
+                                                  fontFamily: "Montserrat"),
+                                            ),
+                                            const SizedBox(
+                                              height: 5,
+                                            ),
+                                            Text(
+                                              schedule.className,
+                                              softWrap: true,
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 28,
+                                                  fontWeight: FontWeight.w700,
+                                                  fontFamily: "Montserrat"),
+                                              maxLines: 2,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ],
                                         ),
                                       ),
                                       const Spacer(),
@@ -184,9 +194,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 fontWeight: FontWeight.w500,
                                                 fontFamily: "Montserrat"),
                                           ),
-                                          SizedBox(
-                                            height: 2,
-                                          ),
+                                          const SizedBox(height: 2),
                                           Text(
                                             schedule.endTime,
                                             style: const TextStyle(

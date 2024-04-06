@@ -77,14 +77,18 @@ class _SportsPageState extends State<SportsPage> {
                 child: Padding(
                   padding: const EdgeInsets.only(top: 15.0),
                   child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "Recent Games",
-                        style: TextStyle(
-                            color: textColor,
-                            fontFamily: "Montserrat",
-                            fontSize: 22,
-                            fontWeight: FontWeight.w600),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10.0),
+                        child: Text(
+                          "Recent Games",
+                          style: TextStyle(
+                              color: textColor,
+                              fontFamily: "Montserrat",
+                              fontSize: 22,
+                              fontWeight: FontWeight.w600),
+                        ),
                       ),
                       const Spacer(),
                       FutureBuilder(
@@ -204,14 +208,18 @@ class _SportsPageState extends State<SportsPage> {
                 child: Padding(
                   padding: const EdgeInsets.only(top: 15.0),
                   child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "Upcoming Games",
-                        style: TextStyle(
-                            color: textColor,
-                            fontFamily: "Montserrat",
-                            fontSize: 22,
-                            fontWeight: FontWeight.w600),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10.0),
+                        child: Text(
+                          "Upcoming Games",
+                          style: TextStyle(
+                              color: textColor,
+                              fontFamily: "Montserrat",
+                              fontSize: 22,
+                              fontWeight: FontWeight.w600),
+                        ),
                       ),
                       const Spacer(),
                       FutureBuilder(
@@ -332,13 +340,17 @@ class _SportsPageState extends State<SportsPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Standings",
-                              style: TextStyle(
-                                  color: textColor,
-                                  fontFamily: "Montserrat",
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.w600)),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10.0),
+                            child: Text("Standings",
+                                style: TextStyle(
+                                    color: textColor,
+                                    fontFamily: "Montserrat",
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.w600)),
+                          ),
                           const Spacer(),
                           FutureBuilder(
                             future: _sports,
@@ -346,36 +358,34 @@ class _SportsPageState extends State<SportsPage> {
                               if (snapshot.hasData) {
                                 List<Sport> sports =
                                     snapshot.data as List<Sport>;
-                                return Container(
-                                  child: DropdownButton<Sport>(
-                                    value: selectedSport ?? sports[0],
-                                    icon: const Icon(Icons.arrow_drop_down),
-                                    iconSize: 20,
-                                    elevation: 18,
-                                    dropdownColor: bgColor,
-                                    style: TextStyle(
-                                        color: textColor,
-                                        fontFamily: "Montserrat"),
-                                    underline: Container(
-                                      height: 1,
+                                return DropdownButton<Sport>(
+                                  value: selectedSport ?? sports[0],
+                                  icon: const Icon(Icons.arrow_drop_down),
+                                  iconSize: 20,
+                                  elevation: 18,
+                                  dropdownColor: bgColor,
+                                  style: TextStyle(
                                       color: textColor,
-                                    ),
-                                    onChanged: (Sport? newValue) {
-                                      setState(() {
-                                        selectedSport = newValue!;
-                                      });
-                                    },
-                                    items: sports.map<DropdownMenuItem<Sport>>(
-                                        (Sport value) {
-                                      return DropdownMenuItem<Sport>(
-                                        value: value,
-                                        child: Text(value.name,
-                                            style: TextStyle(
-                                                color: textColor,
-                                                fontFamily: "Montserrat")),
-                                      );
-                                    }).toList(),
+                                      fontFamily: "Montserrat"),
+                                  underline: Container(
+                                    height: 1,
+                                    color: textColor,
                                   ),
+                                  onChanged: (Sport? newValue) {
+                                    setState(() {
+                                      selectedSport = newValue!;
+                                    });
+                                  },
+                                  items: sports.map<DropdownMenuItem<Sport>>(
+                                      (Sport value) {
+                                    return DropdownMenuItem<Sport>(
+                                      value: value,
+                                      child: Text(value.name,
+                                          style: TextStyle(
+                                              color: textColor,
+                                              fontFamily: "Montserrat")),
+                                    );
+                                  }).toList(),
                                 );
                               } else if (snapshot.hasError) {
                                 return const Text("");

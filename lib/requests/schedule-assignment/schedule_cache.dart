@@ -71,7 +71,7 @@ class RemoteSource {
         throw Exception('Failed to load data');
       } else {
         final isSaved = await mySharedPreferences.saveDataWithExpiration(
-            response.body, const Duration(days: 3));
+            response.body, const Duration(minutes: 15));
         if (isSaved) {
           return response.body;
         } else {

@@ -180,8 +180,9 @@ class _SettingScreenState extends State<SettingScreen> {
                             fontFamily: "Montserrat",
                             fontWeight: FontWeight.w500,
                             fontSize: 15)),
-                    SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     Text("Contributors: Demilade Olawumni '25",
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                             color: secondaryTextColor,
                             fontFamily: "Montserrat",
