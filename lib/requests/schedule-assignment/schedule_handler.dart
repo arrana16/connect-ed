@@ -16,6 +16,7 @@ class ScheduleGetter {
 
   List<List<Color>> gradients = const [
     [Colors.red, Color.fromARGB(255, 255, 148, 33)],
+    [Color.fromARGB(255, 46, 194, 208), Color.fromARGB(255, 212, 54, 244)],
     [Color.fromARGB(255, 3, 190, 41), Color.fromARGB(255, 3, 179, 155)],
     [Color.fromARGB(255, 112, 13, 218), Color.fromARGB(255, 212, 54, 244)],
     [Color.fromARGB(255, 236, 16, 16), Color.fromARGB(255, 223, 34, 173)],
@@ -145,7 +146,7 @@ class ScheduleGetter {
   Future<ScheduleClass> getNextClass() async {
     try {
       List<ScheduleClass> blocks = await getData();
-      DateTime date = DateTime.now();
+      DateTime date = DateTime.now().subtract(const Duration(minutes: 5));
       int hour = date.hour;
       int minute = date.minute;
       int index = -1;

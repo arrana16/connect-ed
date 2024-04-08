@@ -3,7 +3,9 @@
 import 'package:applebycollegeapp/screens/main/settings/beta_testing.dart';
 import 'package:applebycollegeapp/screens/main/settings/bug_screen.dart';
 import 'package:applebycollegeapp/screens/main/settings/link_screen.dart';
+import 'package:applebycollegeapp/screens/setup/welcome_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({super.key});
@@ -13,6 +15,7 @@ class SettingScreen extends StatefulWidget {
 }
 
 class _SettingScreenState extends State<SettingScreen> {
+  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   @override
   Widget build(BuildContext context) {
     var brightness = MediaQuery.of(context).platformBrightness;
@@ -42,13 +45,20 @@ class _SettingScreenState extends State<SettingScreen> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(top: 10.0),
-                      child: Text('Settings',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              color: textColor,
-                              fontSize: 35,
-                              fontFamily: 'Montserrat',
-                              fontWeight: FontWeight.w700)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Settings',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                                color: textColor,
+                                fontSize: 35,
+                                fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.w700),
+                          ),
+                        ],
+                      ),
                     ),
                     const Spacer()
                   ],
@@ -189,6 +199,28 @@ class _SettingScreenState extends State<SettingScreen> {
                             fontSize: 12,
                             fontWeight: FontWeight.w400)),
                   ],
+                ),
+              ),
+            ),
+            const SliverPadding(padding: EdgeInsets.only(top: 50)),
+            SliverToBoxAdapter(
+              child: Center(
+                child: TextButton.icon(
+                  onPressed: () async {
+                    final SharedPreferences prefs = await _prefs;
+                    prefs.setString("setup", "");
+                    prefs.setString("link", "");
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => const WelcomeScreen(),
+                      ),
+                    );
+                  },
+                  icon: const Icon(Icons.logout),
+                  label: const Text(
+                    "Log out",
+                    style: TextStyle(fontFamily: "Montserrat"),
+                  ),
                 ),
               ),
             ),

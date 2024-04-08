@@ -357,7 +357,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               SliverPadding(
-                padding: const EdgeInsets.only(left: 5),
+                padding: const EdgeInsets.symmetric(horizontal: 15),
                 sliver: FutureBuilder(
                   future: _assessments,
                   builder: (context, snapshot) {
@@ -385,20 +385,30 @@ class _HomeScreenState extends State<HomeScreen> {
                           int realIndex = index;
 
                           return ListTile(
-                            title: Text(
-                              currentAssessments[realIndex].title,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  color: textColor),
-                            ),
-                            subtitle: Text(
-                                currentAssessments[realIndex].className,
-                                style: TextStyle(color: textColor)),
-                            trailing: Text(
-                                DateFormat('EE MMM dd')
-                                    .format(currentAssessments[realIndex].date),
-                                style: TextStyle(color: textColor)),
-                          );
+                              title: Text(
+                                currentAssessments[realIndex].title,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontFamily: "Montserrat",
+                                    fontSize: 15,
+                                    color: textColor),
+                              ),
+                              subtitle: Text(
+                                  currentAssessments[realIndex].className,
+                                  style: TextStyle(
+                                      color: textColor,
+                                      fontFamily: "Montserrat",
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w400)),
+                              trailing: Text(
+                                  DateFormat('EE MMM dd').format(
+                                      currentAssessments[realIndex].date),
+                                  style: TextStyle(
+                                      color: textColor,
+                                      fontFamily: "Montserrat",
+                                      fontWeight: FontWeight.w400)),
+                              contentPadding:
+                                  const EdgeInsets.only(bottom: 10));
                         },
                             childCount: currentAssessments.length < 5
                                 ? currentAssessments.length

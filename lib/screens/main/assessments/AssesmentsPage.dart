@@ -97,8 +97,8 @@ class _AssessmentsPageState extends State<AssessmentsPage> {
                         final List<Assessment> assessments =
                             snapshot.data as List<Assessment>;
                         var currentAssessments = assessments
-                            .where((element) =>
-                                element.date.isAfter(DateTime.now()))
+                            .where((element) => element.date.isAfter(
+                                DateTime.now().add(const Duration(days: 1))))
                             .toList();
                         return SliverList(
                           delegate:
