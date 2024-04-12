@@ -116,7 +116,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     padding: EdgeInsets.zero,
                                     constraints: const BoxConstraints(),
                                     onPressed: () {
-                                      Navigator.of(context).push(
+                                      Navigator.of(context, rootNavigator: true)
+                                          .push(
                                         MaterialPageRoute(
                                           builder: (context) => Schedule(
                                             data: snapshot.data as String,
