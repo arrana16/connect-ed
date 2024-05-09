@@ -24,15 +24,24 @@ class WelcomeScreen extends StatelessWidget {
               Stack(
                 alignment: Alignment.center,
                 children: [
-                  Image(
-                      image: const AssetImage('assets/Appleby Aerial.png'),
-                      fit: BoxFit.cover,
-                      height: screenHeight * 0.55,
-                      width: screenWidth),
+                  Container(
+                    height: screenHeight * 0.55,
+                    decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(20),
+                            bottomRight: Radius.circular(20)),
+                        gradient: LinearGradient(
+                            colors: [
+                              Color.fromRGBO(11, 230, 226, 1),
+                              Color.fromRGBO(29, 39, 221, 1)
+                            ],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight)),
+                  ),
                   const Center(
                       child: Image(
-                    image: AssetImage('assets/AC Logo.png'),
-                    height: 150,
+                    image: AssetImage('assets/ConnectEd Transparent.png'),
+                    height: 275,
                     fit: BoxFit.fitHeight,
                   ))
                 ],
