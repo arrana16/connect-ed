@@ -112,7 +112,9 @@ class _SportsPageState extends State<SportsPage> {
                                 (a, b) => a.date.compareTo(b.date) * -1,
                               );
                               List<Game> playedGames = games
-                                  .where((element) => element.homeScore != "")
+                                  .where((element) =>
+                                      (element.date.isBefore(DateTime.now()) &&
+                                          element.homeScore != ""))
                                   .toList();
                               return TextButton(
                                   onPressed: () {
@@ -175,7 +177,8 @@ class _SportsPageState extends State<SportsPage> {
                       );
                       List<Game> playedGames = games
                           .where((element) =>
-                              element.date.isBefore(DateTime.now()))
+                              (element.date.isBefore(DateTime.now()) &&
+                                  element.homeScore != ""))
                           .toList();
 
                       return SliverToBoxAdapter(
