@@ -400,6 +400,7 @@ Future<bool> checkLink(String url) async {
     await scheduleGetter.getData();
     return true;
   } catch (e) {
+    print(e);
     return false;
   }
 }
