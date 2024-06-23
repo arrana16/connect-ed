@@ -73,7 +73,7 @@ class AssignmentGetter {
       if (isAP) {
         return courseNames[1].substring(1, courseNames[1].length);
       } else {
-        return courseNames[0].substring(0, courseNames[0].length);
+        return courseNames[0].substring(0, courseNames[0].length).split(",")[0];
       }
     } catch (e) {
       return "";
