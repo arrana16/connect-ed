@@ -71,6 +71,7 @@ class ScheduleGetter {
             int.parse(eventStart["dt"].substring(6, 8)) == date.day &&
             int.parse(eventStart["dt"].substring(0, 4)) == date.year &&
             eventStart["dt"].length > 9) {
+          print(eventSummary);
           List<Color> gradient = gradients[blocks.length % gradients.length];
           blocks.add(ScheduleClass(
               className: getCourseName(eventSummary),
@@ -93,6 +94,7 @@ class ScheduleGetter {
           : null;
       return blocks;
     } catch (err) {
+      print(err);
       return [
         ScheduleClass(
             className: "Couldn't Load",
@@ -105,32 +107,23 @@ class ScheduleGetter {
   }
 
   String getCourseName(String name) {
-    bool isAP = false;
-    int APindex = 0;
-    String courseName = "";
-    for (int i = 0; i < name.length - 1; i++) {
-      if (name.substring(i, i + 2) == "AP") {
-        isAP = true;
-        APindex = i;
+    try {
+      bool isAP = false;
+      for (int i = 0; i < name.length - 1; i++) {
+        if (name.substring(i, i + 2) == "AP") {
+          isAP = true;
+        }
       }
-    }
 
-    if (isAP) {
-      int i = APindex;
-      while (name.substring(i, i + 2) != " -" && i < name.length - 1) {
-        courseName += name.substring(i, i + 1);
-        i++;
+      List<String> courseNames = name.split("-");
+      if (isAP) {
+        return courseNames[1].substring(1, courseNames[1].length);
+      } else {
+        return courseNames[0].substring(0, courseNames[0].length).split(",")[0];
       }
-    } else {
-      int i = 0;
-      while (name.substring(i, i + 2) != " -" &&
-          name.substring(i, i + 1) != "," &&
-          i < name.length - 1) {
-        courseName += name.substring(i, i + 1);
-        i++;
-      }
+    } catch (e) {
+      return "";
     }
-    return courseName;
   }
 
   String parseTime(String time) {

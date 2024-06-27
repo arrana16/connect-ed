@@ -30,7 +30,6 @@ class _LinkScreenState extends State<LinkScreen> {
         isDarkMode ? const Color.fromARGB(255, 11, 11, 11) : Colors.white;
     var textColor = isDarkMode ? Colors.white : Colors.black;
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       backgroundColor: bgColor,
       body: SafeArea(
         child: Padding(
@@ -401,6 +400,7 @@ Future<bool> checkLink(String url) async {
     await scheduleGetter.getData();
     return true;
   } catch (e) {
+    print(e);
     return false;
   }
 }

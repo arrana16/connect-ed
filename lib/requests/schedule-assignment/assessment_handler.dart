@@ -61,35 +61,22 @@ class AssignmentGetter {
   }
 
   String getCourseName(String name) {
-    bool isAP = false;
-    // ignore: non_constant_identifier_names
-    int APindex = 0;
-    String courseName = "";
-    if (name.length < 2) {
-      return name;
-    }
-    for (int i = 0; i < name.length - 1; i++) {
-      if (name.substring(i, i + 2) == "AP") {
-        isAP = true;
-        APindex = i;
+    try {
+      bool isAP = false;
+      for (int i = 0; i < name.length - 1; i++) {
+        if (name.substring(i, i + 2) == "AP") {
+          isAP = true;
+        }
       }
-    }
 
-    if (isAP) {
-      int i = APindex;
-      while (name.substring(i, i + 2) != " -" && i < name.length - 1) {
-        courseName += name.substring(i, i + 1);
-        i++;
+      List<String> courseNames = name.split("-");
+      if (isAP) {
+        return courseNames[1].substring(1, courseNames[1].length);
+      } else {
+        return courseNames[0].substring(0, courseNames[0].length).split(",")[0];
       }
-    } else {
-      int i = 0;
-      while (name.substring(i, i + 2) != " -" &&
-          name.substring(i, i + 1) != "," &&
-          i < name.length - 1) {
-        courseName += name.substring(i, i + 1);
-        i++;
-      }
+    } catch (e) {
+      return "";
     }
-    return courseName;
   }
 }

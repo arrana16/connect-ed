@@ -116,7 +116,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     padding: EdgeInsets.zero,
                                     constraints: const BoxConstraints(),
                                     onPressed: () {
-                                      Navigator.of(context).push(
+                                      Navigator.of(context, rootNavigator: true)
+                                          .push(
                                         MaterialPageRoute(
                                           builder: (context) => Schedule(
                                             data: snapshot.data as String,
@@ -307,8 +308,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       (a, b) => b.date.compareTo(a.date),
                     );
                     List<Game> upcomingGames = games
-                        .where(
-                            (element) => element.date.isBefore(DateTime.now()))
+                        .where((element) =>
+                            (element.date.isBefore(DateTime.now()) &&
+                                element.homeScore != ""))
                         .toList();
 
                     return SliverToBoxAdapter(
